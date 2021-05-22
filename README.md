@@ -28,7 +28,22 @@ flutter pub get
 
 Please create a new branch for each new feature that you will be working on. Don't forget to create frequent commits. If you find issues, please open an issue to discuss, and assign it to someone. It could be you, and it could be anyone else.
 
+## Pulling Changes in The Main Branch
+
+Please do this whenever you are going to work on something. It pulls the current state of the code in the Main branch.
+
+```
+git pull
+```
+
+Though, in some cases, you might want to pull all branches available in the remote along with their changes. You can also do this:
+
+```
+git fetch --all
+```
+
 ## Pushing to A Branch That You Just Created
+
 Set the remote repo to push on your local machine, for first time push. Onwards, skip this step.
 
 ```
