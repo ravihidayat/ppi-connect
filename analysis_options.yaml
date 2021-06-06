@@ -1,0 +1,15 @@
+include: package:pedantic/analysis_options.1.11.0.yaml
+
+analyzer:
+  errors:
+
+    missing_required_param: warning
+    missing_return: warning
+
+linter:
+  rules:
+
+  - always_declare_return_types
+  - avoid_empty_else
+  - camel_case_types
+  - file_names

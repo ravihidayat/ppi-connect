@@ -1,16 +1,57 @@
 # ppi_connect
 
-A new Flutter project.
+Indonesia ISS mobile application project: PPI-Connect
 
-## Getting Started
+## Contributors:
+```
+    - A Nahda La Roiba
+    - Alifian Naufal Ravi Hidayat
+    - Baron Gobi Ramadhan Natanegara
+    - Kemal Achmad Zulkarnain
+```
 
-This project is a starting point for a Flutter application.
+## Installation
 
-A few resources to get you started if this is your first Flutter project:
+Clone the repo
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+```
+git clone https://github.com/ravihidayat/ppi-connect.git
+```
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Install dependencies
+
+```
+flutter pub get
+```
+
+## Contributing
+
+Please create a new branch for each new feature that you will be working on. Don't forget to create frequent commits. If you find issues, please open an issue to discuss, and assign it to someone. It could be you, and it could be anyone else.
+
+## Pulling Changes in The Main Branch
+
+Please do this whenever you are going to work on something. It pulls the current state of the code in the Main branch.
+
+```
+git pull
+```
+
+Though, in some cases, you might want to pull all branches available in the remote along with their changes. You can also do this:
+
+```
+git fetch --all
+```
+
+## Pushing to A Branch That You Just Created
+
+Set the remote repo to push on your local machine, for first time push. Onwards, skip this step.
+
+```
+git remote add origin https://github.com/ravihidayat/ppi-connect.git
+```
+
+Push to a specific branch. Make sure that you don't push directly to main.
+
+```
+git push -u origin <branch-name>
+```
