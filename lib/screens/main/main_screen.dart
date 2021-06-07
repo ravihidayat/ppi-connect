@@ -22,15 +22,15 @@ class MainScreenState extends State<MainScreen> {
   List<Todo> _todoList;
   Future<List<Todo>> _todoListFuture;
 
-  get user => _user;
+  User get user => _user;
   set user(User value) {
     _user = value;
     refreshTodoListFuture();
   }
-  get todoList => _todoList;
+  List<Todo> get todoList => _todoList;
   set todoList(value) => _todoList = value;
 
-  get todoListFuture => _todoListFuture;
+  Future<List<Todo>> get todoListFuture => _todoListFuture;
   set todoListFuture(value) => _todoListFuture = value;
 
   void refreshTodoListFuture(){

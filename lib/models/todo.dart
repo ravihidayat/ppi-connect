@@ -43,7 +43,6 @@ class Todo {
       _id = json['id'], 
       _user = json['user'];
 
-
   Map<String, dynamic> toJson() => {
     'title': _title,
     'description': _description,

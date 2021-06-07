@@ -11,9 +11,9 @@ class EditScreen extends StatefulWidget {
   final bool _isEditing;
   final Todo _data;
 
-  get isEditing => _isEditing;
+  bool get isEditing => _isEditing;
 
-  get data => _data;
+  Todo get data => _data;
   EditScreen({isEditing, data})
       : _isEditing = isEditing,
         _data = data;
@@ -24,8 +24,8 @@ class EditScreen extends StatefulWidget {
 }
 
 class EditScreenState extends State<EditScreen> {
-  get data => widget.data;
-  get isEditing => widget.isEditing;
+  Todo get data => widget.data;
+  bool get isEditing => widget.isEditing;
 
   @override
   Widget build(BuildContext context) {
