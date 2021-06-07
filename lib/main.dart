@@ -4,9 +4,9 @@ import 'router.dart';
 
 void main() => runApp(
       MaterialApp(
-        title: 'MAP Exercise 3',
+        title: 'PPI UTM Connect',
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(primarySwatch: Colors.green),
+        theme: ThemeData(primarySwatch: Colors.red),
         initialRoute: '/',
         onGenerateRoute: createRoute,
       ),

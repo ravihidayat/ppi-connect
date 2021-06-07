@@ -5,14 +5,16 @@
       "name": "Alexander Holmes",
       "photoUrl": "https://randomuser.me/api/portraits/thumb/men/75.jpg",
       "login": "alex",
-      "password": "123"
+      "password": "123",
+      "role": 1
     },
     {
       "id": 2,
       "name": "Jessica Walters",
       "photoUrl": "https://randomuser.me/api/portraits/thumb/women/75.jpg",
       "login": "jessica",
-      "password": "123"
+      "password": "123",
+      "role": 2
     }
   ],
   "todos": [

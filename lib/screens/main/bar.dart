@@ -22,9 +22,9 @@ class Bar extends StatelessWidget implements PreferredSizeWidget {
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('My Todo List'),
+          Text('PPI-UTM connect'),
           Text(
-            _state.user == null ? 'User name goes here' : _state.user.name, 
+            _state.user == null ? 'something' : _state.user.name, 
             style: TextStyle(fontSize: 12.0)
           ),
         ],
