@@ -12,10 +12,17 @@ class Bar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: _state.isEditing == true ? 
-        Text('Edit a Todo') : Text('Add a Todo'),
+      title: title(),
       leading: Container(),
       centerTitle: true,
     );
+  }
+
+  Text title(){
+    if(_state.isEditing == true){
+      if(_state.user.role == 1) return Text(_state.data.title);
+      return Text('Edit a Todo');
+    }
+    return Text('Add a Todo');
   }
 }

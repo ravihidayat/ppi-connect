@@ -1,3 +1,4 @@
+import 'package:ppi_connect/arguments/argument.dart';
 import 'package:ppi_connect/models/todo.dart';
 import 'package:flutter/material.dart';
 
@@ -13,23 +14,27 @@ class Float extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
+        if(_state.user.role == 2)
         FloatingActionButton(
           tooltip: 'Add a new todo',
-          child: Icon(Icons.add),
           heroTag: null,
           onPressed: () => onAddPressed(context),
+          child: Icon(Icons.add),
         ),
         FloatingActionButton(
             tooltip: 'Refresh',
-            child: Icon(Icons.refresh),
             heroTag: null,
-            onPressed: () => onRefreshPressed())
+            onPressed: () => onRefreshPressed(),
+            child: Icon(Icons.refresh),
+        )
       ],
     );
   }
 
   void onAddPressed(BuildContext context) async {
-    final _todo = await Navigator.pushNamed(context, '/new');
+    final _todo = await Navigator.pushNamed(context, '/new',
+      arguments: UserTodoArguments(_state.user, Todo())
+    );
     if(_todo != null){
       _state.addTodo(_todo);
     }

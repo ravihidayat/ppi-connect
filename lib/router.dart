@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ppi_connect/arguments/argument.dart';
 
 import 'models/todo.dart';
 import 'screens/edit/edit_screen.dart';
@@ -16,11 +17,11 @@ Route<dynamic> createRoute(settings) {
 
     case '/new':
       return EditScreen.route(
-        isEditing: false, data: Todo());
+        isEditing: false, data: settings.arguments);
 
     case '/edit':
       return EditScreen.route(
-          isEditing: true, data: settings.arguments as Todo);
+        isEditing: true, data: settings.arguments);
   }
   return null;
 }

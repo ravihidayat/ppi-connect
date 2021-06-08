@@ -43,7 +43,7 @@ class MainScreenState extends State<MainScreen> {
   void addTodo(Todo todo) async {
     if(_user != null){
       todo.user = _user.id;
-      final Todo _todo = await TodoService.addTodo(todo);
+      final _todo = await TodoService.addTodo(todo);
       setState(() => _todoList.add(_todo));
     }
   }

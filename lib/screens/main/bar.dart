@@ -24,7 +24,7 @@ class Bar extends StatelessWidget implements PreferredSizeWidget {
         children: [
           Text('PPI-UTM connect'),
           Text(
-            _state.user == null ? 'something' : _state.user.name, 
+            userRole(), 
             style: TextStyle(fontSize: 12.0)
           ),
         ],
@@ -39,6 +39,15 @@ class Bar extends StatelessWidget implements PreferredSizeWidget {
         })],
     );
   }
+
+  String userRole(){
+    if(_state.user != null){
+      if(_state.user.role == 1){ return 'Member'; }
+      else if(_state.user.role == 2){ return 'Management'; }
+    }
+    return '-';
+  }
+
   void onLogin(BuildContext context) async {
     final _user = await  Navigator.pushNamed(context, '/login');
     if(_user != null){
@@ -47,6 +56,6 @@ class Bar extends StatelessWidget implements PreferredSizeWidget {
   }
   void onLogout(BuildContext context) async {
     _state.user = null;
-    await Navigator.pushNamed(context, '/');
+    await Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
   }
 }

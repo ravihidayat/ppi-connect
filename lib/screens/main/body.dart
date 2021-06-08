@@ -1,3 +1,4 @@
+import 'package:ppi_connect/arguments/argument.dart';
 import 'package:ppi_connect/services/todo_service.dart';
 import 'package:flutter/material.dart';
 
@@ -34,16 +35,22 @@ class Body extends StatelessWidget {
             '${_state.todoList[index].title}',
             style: TextStyle(decoration: _state.todoList[index].done == true ? TextDecoration.lineThrough : TextDecoration.none)),
           subtitle: Text(
-            '${_state.todoList[index].description}'
+            '${_state.todoList[index].category}'
           ),
           onTap: () => _todoTap(context, index),
-          onLongPress: () => _todoLongPressed(index),
+          onLongPress: () {
+            if(_state.user.role == 2) _todoLongPressed(index);
+          },
         ),
       );
   }
   void _todoTap(BuildContext context, int _index) async {
-    //This _todo only contain the updated attribute. (Desc, Title & Done)
-    final _todo = await Navigator.pushNamed(context, '/edit', arguments: _state.todoList[_index]);
+    final _todo = await Navigator.pushNamed(context, '/edit', 
+      arguments: UserTodoArguments(
+        _state.user,
+        _state.todoList[_index],
+      )
+    );
     if(_todo != null){
       _state.updateTodo(index: _index, todo: _todo);
     }

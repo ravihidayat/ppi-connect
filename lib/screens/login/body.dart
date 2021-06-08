@@ -32,11 +32,11 @@ class Body extends StatelessWidget {
               _state.password = value;
             }),
         Visibility(
+          visible: _state.showErrorMsg,
           child: Text(
             'Invalid username or password!',
             style: TextStyle(color: Colors.red, fontSize: 20.0),
           ),
-          visible: _state.showErrorMsg,
         ),
         SizedBox(height: 10.0),
         _buildButtons(context)
@@ -62,20 +62,20 @@ class Body extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         ElevatedButton(
-          child: Text('Log in'),
           onPressed: () => onLoginPressed(context),
+          child: Text('Log in'),
         ),
         SizedBox(width: 10.0),
         ElevatedButton(
-          child: Text('Cancel'),
           onPressed: () => onCancelPressed(context),
+          child: Text('Cancel'),
         ),
       ],
     );
   }
 
   void onLoginPressed(BuildContext context) async {
-    final User user = await UserService.getUserByLoginAndPassword(
+    final user = await UserService.getUserByLoginAndPassword(
       login: _state.login,
       password: _state.password,
     );

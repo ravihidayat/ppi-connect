@@ -1,3 +1,5 @@
+import 'package:ppi_connect/arguments/argument.dart';
+import 'package:ppi_connect/models/user.dart';
 import 'package:ppi_connect/screens/edit/bar.dart';
 import 'package:flutter/material.dart';
 
@@ -9,14 +11,14 @@ class EditScreen extends StatefulWidget {
       builder: (context) => EditScreen(isEditing: isEditing, data: data));
 
   final bool _isEditing;
-  final Todo _data;
+  final _data;
 
   bool get isEditing => _isEditing;
 
-  Todo get data => _data;
+  dynamic get data => _data;
   EditScreen({isEditing, data})
       : _isEditing = isEditing,
-        _data = data;
+        _data = data as UserTodoArguments;
         
 
   @override
@@ -24,7 +26,8 @@ class EditScreen extends StatefulWidget {
 }
 
 class EditScreenState extends State<EditScreen> {
-  Todo get data => widget.data;
+  Todo get data => widget.data.todo;
+  User get user => widget.data.user;
   bool get isEditing => widget.isEditing;
 
   @override

@@ -16,16 +16,16 @@ class LoginScreenState extends State<LoginScreen> {
   bool _showPassword = false;
   bool _showErrorMsg = false;
 
-  get login => _login;
+  String get login => _login;
   set login(value) => setState(() => _login = value);
 
-  get password => _password;
+  String get password => _password;
   set password(value) => setState(() => _password = value);
   
-  get showPassword => _showPassword;
+  bool get showPassword => _showPassword;
   set showPassword(value) => setState(() => _showPassword = value);
   
-  get showErrorMsg => _showErrorMsg;
+  bool get showErrorMsg => _showErrorMsg;
   set showErrorMsg(value) => setState(() => _showErrorMsg = value);
 
   @override
