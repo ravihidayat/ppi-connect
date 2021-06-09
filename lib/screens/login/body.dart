@@ -15,6 +15,11 @@ class Body extends StatelessWidget {
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        Image.asset(
+          'assets/ppi.png',
+          height: 250,
+          width: 250,
+        ),
         _buildTextField(
             hint: 'Username',
             icon: Icons.people,
