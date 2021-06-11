@@ -35,7 +35,8 @@ class MainScreenState extends State<MainScreen> {
 
   void refreshTodoListFuture(){
     if(_user != null){
-      _todoListFuture = TodoService.getTodoListByUser(_user.id);
+      //_todoListFuture = TodoService.getTodoListByUser(_user.id);
+      _todoListFuture = TodoService.getAllTodo();
       setState(() {});
     }
   }

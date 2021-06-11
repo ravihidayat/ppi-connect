@@ -1,9 +1,17 @@
+import 'dart:convert';
+
 import 'package:http/http.dart';
 
 import 'rest.dart';
 import '../models/todo.dart';
 
 class TodoService {
+  static Future<List<Todo>> getAllTodo() async {
+    final List jsonList = await Rest.get('todos');
+
+    return jsonList.map((json) => Todo.fromJson(json)).toList();
+  }
+
   static Future<List<Todo>> getTodoListByUser(int userId) async {
     final List jsonList = await Rest.get('todos?user=$userId');
 
