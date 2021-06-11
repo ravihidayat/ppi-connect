@@ -19,6 +19,7 @@ class Bar extends StatelessWidget implements PreferredSizeWidget {
               AssetImage('assets/unknown_user.png') 
               : NetworkImage('${_state.user.photoUrl}')
           ),
+      centerTitle: _state.user == null ? true : false,
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -45,7 +46,7 @@ class Bar extends StatelessWidget implements PreferredSizeWidget {
       if(_state.user.role == 1){ return 'Member'; }
       else if(_state.user.role == 2){ return 'Management'; }
     }
-    return '-';
+    return 'Welcome to PPI-UTM Apps';
   }
 
   void onLogin(BuildContext context) async {

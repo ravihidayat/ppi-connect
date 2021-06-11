@@ -70,8 +70,30 @@ class MainScreenState extends State<MainScreen> {
           body: _user != null ? Body(
             state: this,
           ) : Container(
+            // color: Colors.red,
             child: Center(
-              child: Text('Please Login First'),),
+              child: Stack(
+                children: <Widget>[
+                  Container(
+                    alignment: Alignment.center,
+                    child: Image.asset(
+                    'assets/ppi2.png',
+                      height: 300,
+                      width: double.infinity,
+                      color: Colors.red.withOpacity(0.2),
+                      // fit: BoxFit.cover,
+                    ),
+                  ),
+                  Container(
+                      alignment: Alignment.center,
+                      child: Text(
+                        'Please Login First',
+                        style: TextStyle(
+                          color: Colors.black, fontWeight: FontWeight.bold, fontSize: 22.0),
+                      )),
+                ],
+              ),
+            ),
           ),
           floatingActionButton: _user != null ? Float(state: this,)
             : null,
