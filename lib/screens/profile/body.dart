@@ -17,14 +17,19 @@ class _BodyState extends State<Body> {
   String _photoUrl;
   String _login;
   String _password;
+  String _role;
+  
   @override
   void initState() {
+    // ignore: todo
     // TODO: implement initState
     _id = widget._state.userData.id;
     _name = widget._state.userData.name;
     _photoUrl = widget._state.userData.photoUrl;
     _login = widget._state.userData.login;
     _password = widget._state.userData.password;
+    if(widget._state.userData.role == 1) { _role = 'Member'; }
+    else if(widget._state.userData.role == 2) { _role = 'Management'; }
   }
 
   @override
@@ -39,12 +44,13 @@ class _BodyState extends State<Body> {
             decoration: BoxDecoration(
                 color: Colors.red,
                 image: DecorationImage(
-                    image: NetworkImage('${_photoUrl}'), fit: BoxFit.cover),
+                    image: NetworkImage('$_photoUrl'), fit: BoxFit.cover),
                 borderRadius: BorderRadius.all(Radius.circular(75.0)),
                 boxShadow: [BoxShadow(blurRadius: 7.0, color: Colors.black)])),
         paddedTextField(label: 'ID', value: _id.toString()),
         paddedTextField(label: 'Username', value: _login),
         paddedTextField(label: 'Name', value: _name),
+        paddedTextField(label: 'Role', value: _role)
       ],
     );
   }
