@@ -1,7 +1,7 @@
 import 'dart:developer';
 
-import 'package:ppi_connect/models/todo.dart';
-import 'package:ppi_connect/services/todo_service.dart';
+import 'package:ppi_connect/models/event.dart';
+import 'package:ppi_connect/services/event_service.dart';
 import 'package:flutter/material.dart';
 
 import 'edit_screen.dart';
@@ -92,12 +92,12 @@ class _Body extends State<Body> {
         widget._state.user.role == 2 ?
         ElevatedButton(
           onPressed: () => widget._state.isEditing == true ? 
-            _onTodoOkPressedEdit(context) : _onTodoOkPressedAdd(context),
+            _onEventOkPressedEdit(context) : _onEventOkPressedAdd(context),
           child: Text('Ok'),
         ) : Container(),
         SizedBox(width: 10.0),
         ElevatedButton(
-          onPressed: () => _onTodoCancelPressed(context),
+          onPressed: () => _onEventCancelPressed(context),
           child: widget._state.user.role == 2? Text('Cancel') : Text('Back'),
         ),
       ],
@@ -152,21 +152,21 @@ class _Body extends State<Body> {
     return Container();
   }
 
-  void _onTodoOkPressedAdd(BuildContext context) async {
+  void _onEventOkPressedAdd(BuildContext context) async {
     if(!(_desc == '' || _title == '' || _category == '')){
-      var _todo = Todo(description: _desc, title: _title, category: _category);
-      Navigator.pop(context, _todo);
+      var _event = Event(description: _desc, title: _title, category: _category);
+      Navigator.pop(context, _event);
     }
   }
 
-  void _onTodoOkPressedEdit(BuildContext context) async {
+  void _onEventOkPressedEdit(BuildContext context) async {
     if(!(_desc == '' || _title == '')){
-      var _todo = Todo(description: _desc, title: _title, done: _done, category: _category);
-      Navigator.pop(context, _todo);
+      var _event = Event(description: _desc, title: _title, done: _done, category: _category);
+      Navigator.pop(context, _event);
     }
   }
 
-  void _onTodoCancelPressed(BuildContext context){
+  void _onEventCancelPressed(BuildContext context){
     Navigator.pop(context, null);
   }
 }

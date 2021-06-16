@@ -3,7 +3,7 @@ import 'package:ppi_connect/models/user.dart';
 import 'package:ppi_connect/screens/edit/bar.dart';
 import 'package:flutter/material.dart';
 
-import '../../models/todo.dart';
+import '../../models/event.dart';
 import 'body.dart';
 
 class EditScreen extends StatefulWidget {
@@ -18,7 +18,7 @@ class EditScreen extends StatefulWidget {
   dynamic get data => _data;
   EditScreen({isEditing, data})
       : _isEditing = isEditing,
-        _data = data as UserTodoArguments;
+        _data = data as UserEventArguments;
         
 
   @override
@@ -26,7 +26,7 @@ class EditScreen extends StatefulWidget {
 }
 
 class EditScreenState extends State<EditScreen> {
-  Todo get data => widget.data.todo;
+  Event get data => widget.data.event;
   User get user => widget.data.user;
   bool get isEditing => widget.isEditing;
 

@@ -1,9 +1,9 @@
-import 'package:ppi_connect/models/todo.dart';
+import 'package:ppi_connect/models/event.dart';
 import 'package:ppi_connect/models/user.dart';
 
-class UserTodoArguments{
+class UserEventArguments{
   final User user;
-  final Todo todo;
+  final Event event;
 
-  UserTodoArguments(this.user, this.todo);
+  UserEventArguments(this.user, this.event);
 }

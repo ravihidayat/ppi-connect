@@ -1,5 +1,5 @@
 import 'package:ppi_connect/arguments/argument.dart';
-import 'package:ppi_connect/models/todo.dart';
+import 'package:ppi_connect/models/event.dart';
 import 'package:flutter/material.dart';
 
 import 'main_screen.dart';
@@ -16,7 +16,7 @@ class Float extends StatelessWidget {
       children: [
         if(_state.user.role == 2)
         FloatingActionButton(
-          tooltip: 'Add a new todo',
+          tooltip: 'Add a new event',
           heroTag: null,
           onPressed: () => onAddPressed(context),
           child: Icon(Icons.add),
@@ -32,14 +32,14 @@ class Float extends StatelessWidget {
   }
 
   void onAddPressed(BuildContext context) async {
-    final _todo = await Navigator.pushNamed(context, '/new',
-      arguments: UserTodoArguments(_state.user, Todo())
+    final _event = await Navigator.pushNamed(context, '/new',
+      arguments: UserEventArguments(_state.user, Event())
     );
-    if(_todo != null){
-      _state.addTodo(_todo);
+    if(_event != null){
+      _state.addEvent(_event);
     }
   }
   void onRefreshPressed(){
-    _state.refreshTodoListFuture();
+    _state.refreshEventListFuture();
   }
 }

@@ -7,23 +7,23 @@
 ### Purpose   : To simulate the authentication process. 
 GET {{baseUrl}}/users?login=alex&password=123x
 
-### Request 2 : Get the list of todos for a given user
+### Request 2 : Get the list of events for a given user
 ### Purpose   : To render the main screen
-GET {{baseUrl}}/todos?user=2
+GET {{baseUrl}}/events?user=2
 
-### Request 3 : Create a new todo for a given user
-POST {{baseUrl}}/todos
+### Request 3 : Create a new event for a given user
+POST {{baseUrl}}/events
 Content-Type: application/json
 
 {
     "user": 2,
-    "title": "A new todo",
-    "description": "This is a new todo",
+    "title": "A new event",
+    "description": "This is a new event",
     "done": false
 }
 
-### Request 4 : Update the information of a given todo
-PUT {{baseUrl}}/todos/6
+### Request 4 : Update the information of a given event
+PUT {{baseUrl}}/events/6
 Content-Type: application/json
 
 {
@@ -34,5 +34,5 @@ Content-Type: application/json
 }
 
 
-### Request 5 : Delete a given todo
-DELETE {{baseUrl}}/todos/6
+### Request 5 : Delete a given event
+DELETE {{baseUrl}}/events/6

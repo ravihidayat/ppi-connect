@@ -3,8 +3,8 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 
 import '../../models/user.dart';
-import '../../models/todo.dart';
-import '../../services/todo_service.dart';
+import '../../models/event.dart';
+import '../../services/event_service.dart';
 
 import 'bar.dart';
 import 'body.dart';
@@ -20,47 +20,46 @@ class MainScreen extends StatefulWidget {
 
 class MainScreenState extends State<MainScreen> {
   User _user;
-  List<Todo> _todoList;
-  Future<List<Todo>> _todoListFuture;
+  List<Event> _eventList;
+  Future<List<Event>> _eventListFuture;
 
   User get user => _user;
   set user(User value) {
     _user = value;
-    refreshTodoListFuture();
+    refreshEventListFuture();
   }
 
-  List<Todo> get todoList => _todoList;
-  set todoList(value) => _todoList = value;
+  List<Event> get eventList => _eventList;
+  set eventList(value) => _eventList = value;
 
-  Future<List<Todo>> get todoListFuture => _todoListFuture;
-  set todoListFuture(value) => _todoListFuture = value;
+  Future<List<Event>> get eventListFuture => _eventListFuture;
+  set eventListFuture(value) => _eventListFuture = value;
 
-  void refreshTodoListFuture(){
+  void refreshEventListFuture(){
     if(_user != null){
-      //_todoListFuture = TodoService.getTodoListByUser(_user.id);
-      _todoListFuture = TodoService.getAllTodo();
+      _eventListFuture = EventService.getAllEvent();
       setState(() {});
     }
   }
 
-  void addTodo(Todo todo) async {
+  void addEvent(Event event) async {
     if (_user != null) {
-      todo.user = _user.id;
-      final _todo = await TodoService.addTodo(todo);
-      setState(() => _todoList.add(_todo));
+      event.user = _user.id;
+      final _event = await EventService.addEvent(event);
+      setState(() => _eventList.add(_event));
     }
   }
 
-  void updateTodo({int index, Todo todo}) async {
-    todo.id = _todoList[index].id;
-    todo.user = _todoList[index].user;
-    _todoList[index] = await TodoService.updateTodo(todo);
-    refreshTodoListFuture();
+  void updateEvent({int index, Event event}) async {
+    event.id = _eventList[index].id;
+    event.user = _eventList[index].user;
+    _eventList[index] = await EventService.updateEvent(event);
+    refreshEventListFuture();
   }
 
-  void removeTodo(int index) async {
-    await TodoService.removeTodo(_todoList[index]);
-    refreshTodoListFuture();
+  void removeEvent(int index) async {
+    await EventService.removeEvent(_eventList[index]);
+    refreshEventListFuture();
   }
 
   @override

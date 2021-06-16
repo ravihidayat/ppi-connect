@@ -1,8 +1,8 @@
 import 'package:ppi_connect/arguments/argument.dart';
-import 'package:ppi_connect/services/todo_service.dart';
+import 'package:ppi_connect/services/event_service.dart';
 import 'package:flutter/material.dart';
 
-import '../../models/todo.dart';
+import '../../models/event.dart';
 import 'main_screen.dart';
 
 class Body extends StatelessWidget {
@@ -12,11 +12,11 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<Todo>>(
-      future: _state.todoListFuture,
+    return FutureBuilder<List<Event>>(
+      future: _state.eventListFuture,
       builder: (context, snapshot){
         if(snapshot.hasData){
-          _state.todoList = snapshot.data;
+          _state.eventList = snapshot.data;
           return _buildListView();
         }
         return Center(child: Text('Please Login'),);
@@ -26,39 +26,39 @@ class Body extends StatelessWidget {
 
   ListView _buildListView() {
     return ListView.separated(
-        itemCount: _state.todoList.length,
+        itemCount: _state.eventList.length,
         separatorBuilder: (context, index) => Divider(
           color: Colors.blueGrey,
         ),
         itemBuilder: (context, index) => ListTile(
           title: Text(
-            '${_state.todoList[index].title}',
-            style: TextStyle(decoration: _state.todoList[index].done == true ? TextDecoration.lineThrough : TextDecoration.none)),
+            '${_state.eventList[index].title}',
+            style: TextStyle(decoration: _state.eventList[index].done == true ? TextDecoration.lineThrough : TextDecoration.none)),
           subtitle: Text(
-            '${_state.todoList[index].category}'
+            '${_state.eventList[index].category}'
           ),
-          onTap: () => _todoTap(context, index),
+          onTap: () => _eventTap(context, index),
           onLongPress: () {
-            if(_state.user.role == 2) _todoLongPressed(index);
+            if(_state.user.role == 2) _eventLongPressed(index);
           },
         ),
       );
   }
-  void _todoTap(BuildContext context, int _index) async {
-    final _todo = await Navigator.pushNamed(context, '/edit', 
-      arguments: UserTodoArguments(
+  void _eventTap(BuildContext context, int _index) async {
+    final _event = await Navigator.pushNamed(context, '/edit', 
+      arguments: UserEventArguments(
         _state.user,
-        _state.todoList[_index],
+        _state.eventList[_index],
       )
     );
-    if(_todo != null){
-      _state.updateTodo(index: _index, todo: _todo);
+    if(_event != null){
+      _state.updateEvent(index: _index, event: _event);
     }
   }
 
-  void _todoLongPressed(int index){
-    if(_state.todoList[index].done == true){
-      _state.removeTodo(index);
+  void _eventLongPressed(int index){
+    if(_state.eventList[index].done == true){
+      _state.removeEvent(index);
     }
   }
 }

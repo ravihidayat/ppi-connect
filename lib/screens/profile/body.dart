@@ -21,7 +21,7 @@ class _BodyState extends State<Body> {
   
   @override
   void initState() {
-    // ignore: todo
+    // ignore: event
     // TODO: implement initState
     _id = widget._state.userData.id;
     _name = widget._state.userData.name;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ppi_connect/arguments/argument.dart';
 
-import 'models/todo.dart';
+import 'models/event.dart';
 import 'screens/edit/edit_screen.dart';
 import 'screens/login/login_screen.dart';
 import 'screens/main/main_screen.dart';

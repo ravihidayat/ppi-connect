@@ -21,8 +21,8 @@ class Bar extends StatelessWidget implements PreferredSizeWidget {
   Text title(){
     if(_state.isEditing == true){
       if(_state.user.role == 1) return Text(_state.data.title);
-      return Text('Edit a Todo');
+      return Text('Edit a Event');
     }
-    return Text('Add a Todo');
+    return Text('Add a Event');
   }
 }

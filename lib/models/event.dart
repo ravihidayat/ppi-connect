@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 
-class Todo {
+class Event {
   String _title;
   String _description;
   bool _done;
@@ -8,7 +8,7 @@ class Todo {
   int _user;
   String _category;
 
-  Todo(
+  Event(
       {String title = '',
       String description = '',
       bool done = false,
@@ -41,7 +41,7 @@ class Todo {
   set category(category) =>_category = category;
 
 
-  Todo.copy(Todo from) : this(
+  Event.copy(Event from) : this(
     title: from.title,
     description: from.description,
     done: from.done,
@@ -50,7 +50,7 @@ class Todo {
     category: from.category,
   );
 
-  Todo.fromJson(Map<String, dynamic> json)
+  Event.fromJson(Map<String, dynamic> json)
     : _title = json['title'],
       _description = json['description'],
       _done = json['done'], 
