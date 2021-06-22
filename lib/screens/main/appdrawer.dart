@@ -19,7 +19,7 @@ class AppDrawer extends StatelessWidget {
                   Text(_state.member == null ? 'Anonymous' : _state.member.name),
               accountEmail: Text(_state.member == null
                   ? 'Anonymous'
-                  : _state.member.matrix_card.toString()),
+                  : _state.member.matrix_card),
               currentAccountPicture: GestureDetector(
                 onTap: () => _state.member == null
                     ? {}

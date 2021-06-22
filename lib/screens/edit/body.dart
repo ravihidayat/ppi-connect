@@ -1,5 +1,7 @@
 import 'dart:developer';
 
+import 'package:intl/intl.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:ppi_connect/models/event.dart';
 import 'package:ppi_connect/services/event_service.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +20,7 @@ class _Body extends State<Body> {
   String _title = '';
   String _desc = '';
   String _category = '';
-  bool _done;
+  DateTime _date = DateTime.now();
 
   @override
   void initState() {
@@ -27,7 +29,7 @@ class _Body extends State<Body> {
       _title = widget._state.data.title;
       _desc = widget._state.data.desc;
       _category = widget._state.data.category;
-      _done = widget._state.data.done;
+      _date = widget._state.data.date;
     }
   }
 
@@ -67,7 +69,11 @@ class _Body extends State<Body> {
             ) 
           ),
         ),
-        _doneCheckList(context),
+        TextButton(
+          onPressed: () => widget._state.isEditing == true && widget._state.member.access_grant == 2 ? 
+          _datePicker(context) : {},
+          child: Text(DateFormat.yMMMd().format(_date).toString()),
+        ),
         _buildButtons(context),
       ],
     );
@@ -139,29 +145,29 @@ class _Body extends State<Body> {
     );
   }
 
-  dynamic _doneCheckList(BuildContext context){
-    if(widget._state.isEditing == true && widget._state.member.access_grant == 2){
-      return CheckboxListTile(
-        value: _done,
-        onChanged: (value) {
-          setState(() => _done = value);
-        },
-        title: Text('Done'),
-      );
+  Future<void> _datePicker(BuildContext context) async {
+    final picked = await showDatePicker(
+        context: context,
+        initialDate: _date,
+        firstDate: DateTime(2015, 8),
+        lastDate: DateTime(2101));
+    if (picked != null && picked != _date) {
+      setState(() {
+        _date = picked;
+      });
     }
-    return Container();
   }
 
   void _onEventOkPressedAdd(BuildContext context) async {
     if(!(_desc == '' || _title == '' || _category == '')){
-      var _event = Event(event_details: _desc, event_title: _title, event_category: _category);
+      var _event = Event(event_details: _desc, event_title: _title, event_date: _date, event_category: _category);
       Navigator.pop(context, _event);
     }
   }
 
   void _onEventOkPressedEdit(BuildContext context) async {
     if(!(_desc == '' || _title == '')){
-      var _event = Event(event_details: _desc, event_title: _title, done: _done, event_category: _category);
+      var _event = Event(event_details: _desc, event_title: _title, event_date: _date, event_category: _category);
       Navigator.pop(context, _event);
     }
   }

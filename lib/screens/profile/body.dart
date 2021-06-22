@@ -12,7 +12,7 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  int _matrix_card;
+  String _matrix_card;
   String _name;
   String _photoUrl;
   String _email;
@@ -45,7 +45,7 @@ class _BodyState extends State<Body> {
                     image: NetworkImage('$_photoUrl'), fit: BoxFit.cover),
                 borderRadius: BorderRadius.all(Radius.circular(75.0)),
                 boxShadow: [BoxShadow(blurRadius: 7.0, color: Colors.black)])),
-        paddedTextField(label: 'Matric No', value: _matrix_card.toString()),
+        paddedTextField(label: 'Matric No', value: _matrix_card),
         paddedTextField(label: 'Username', value: _email),
         paddedTextField(label: 'Name', value: _name),
         paddedTextField(label: 'Role', value: _access_grant)

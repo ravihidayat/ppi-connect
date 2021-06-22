@@ -33,7 +33,7 @@ class Body extends StatelessWidget {
         itemBuilder: (context, index) => ListTile(
           title: Text(
             '${_state.eventList[index].title}',
-            style: TextStyle(decoration: _state.eventList[index].done == true ? TextDecoration.lineThrough : TextDecoration.none)),
+            style: TextStyle(decoration: _state.eventList[index].date.isBefore(DateTime.now()) ? TextDecoration.lineThrough : TextDecoration.none)),
           subtitle: Text(
             '${_state.eventList[index].category}'
           ),
@@ -57,7 +57,7 @@ class Body extends StatelessWidget {
   }
 
   void _eventLongPressed(int index){
-    if(_state.eventList[index].done == true){
+    if(_state.eventList[index].date.isBefore(DateTime.now())){
       _state.removeEvent(index);
     }
   }

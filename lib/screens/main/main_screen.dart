@@ -44,7 +44,6 @@ class MainScreenState extends State<MainScreen> {
 
   void addEvent(Event event) async {
     if (_member != null) {
-      event.member = _member.matrix_card;
       final _event = await EventService.addEvent(event);
       setState(() => _eventList.add(_event));
     }
@@ -52,7 +51,6 @@ class MainScreenState extends State<MainScreen> {
 
   void updateEvent({int index, Event event}) async {
     event.id = _eventList[index].id;
-    event.member = _eventList[index].member;
     _eventList[index] = await EventService.updateEvent(event);
     refreshEventListFuture();
   }

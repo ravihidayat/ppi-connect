@@ -1,5 +1,5 @@
 class Member {
-  int _matrix_card;
+  String _matrix_card;
   String _name;
   String _photoUrl;
   String _email;
@@ -7,7 +7,7 @@ class Member {
 
   int _access_grant; // 1 = member, 2 = management
 
-  int get matrix_card => _matrix_card;
+  String get matrix_card => _matrix_card;
   set matrix_card(value) => _matrix_card = value;
 
   String get name => _name;
@@ -26,7 +26,7 @@ class Member {
   set access_grant(value) => _access_grant = value;
 
   Member(
-      {int matrix_card,
+      {String matrix_card,
       String name = '',
       String photoUrl = '',
       String email = '',
