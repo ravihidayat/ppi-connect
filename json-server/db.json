@@ -1,62 +1,62 @@
 {
-  "users": [
+  "members": [
     {
-      "id": 1,
+      "matrix_card": 1,
       "name": "Alexander Holmes",
       "photoUrl": "https://randomuser.me/api/portraits/thumb/men/75.jpg",
-      "login": "alex",
+      "email": "alex",
       "password": "123",
-      "role": 1
+      "access_grant": 1
     },
     {
-      "id": 2,
+      "matrix_card": 2,
       "name": "Jessica Walters",
       "photoUrl": "https://randomuser.me/api/portraits/thumb/women/75.jpg",
-      "login": "jessica",
+      "email": "jessica",
       "password": "123",
-      "role": 2
+      "access_grant": 2
     }
   ],
   "events": [
     {
-      "id": 1,
-      "user": 2,
-      "title": "Prepare project proposal",
-      "description": "To write a proposal for a new client company. Plan: using Flutter framework",
+      "event_id": 1,
+      "member": 2,
+      "event_title": "Prepare project proposal",
+      "event_details": "To write a proposal for a new client company. Plan: using Flutter framework",
       "done": false,
-      "category": "Human Dev"
+      "event_category": "Human Dev"
     },
     {
-      "id": 2,
-      "user": 1,
-      "title": "Replace light bulb",
-      "description": "Buy the bulb from online. Prefer to buy a LED bulb",
+      "event_id": 2,
+      "member": 1,
+      "event_title": "Replace light bulb",
+      "event_details": "Buy the bulb from online. Prefer to buy a LED bulb",
       "done": false,
-      "category": "Strategic Studies"
+      "event_category": "Strategic Studies"
     },
     {
-      "id": 3,
-      "user": 2,
-      "title": "Buy Flutter eBooks",
-      "description": "1. Beginning App Development with Flutter by Rap Payne.  2. Beginning Flutter: A Hands on Guide to App Development by Marco L. Napoli",
+      "event_id": 3,
+      "member": 2,
+      "event_title": "Buy Flutter eBooks",
+      "event_details": "1. Beginning App Development with Flutter by Rap Payne.  2. Beginning Flutter: A Hands on Guide to App Development by Marco L. Napoli",
       "done": false,
-      "category": "Sport"
+      "event_category": "Sport"
     },
     {
-      "id": 4,
-      "user": 1,
-      "title": "Subscribe to an internet service",
-      "description": "Plan to subscribe a fibre optic based service. Potential provider: TM Unifi and Maxis",
+      "event_id": 4,
+      "member": 1,
+      "event_title": "Subscribe to an internet service",
+      "event_details": "Plan to subscribe a fibre optic based service. Potential provider: TM Unifi and Maxis",
       "done": false,
-      "category": "Academic"
+      "event_category": "Academic"
     },
     {
-      "id": 5,
-      "user": 1,
-      "title": "Online meeting with friends",
-      "description": "To discuss about the plan for setting up an online shopping store",
+      "event_id": 5,
+      "member": 1,
+      "event_title": "Online meeting with friends",
+      "event_details": "To discuss about the plan for setting up an online shopping store",
       "done": false,
-      "category": "Arts or Music"
+      "event_category": "Arts or Music"
     }
   ]
 }

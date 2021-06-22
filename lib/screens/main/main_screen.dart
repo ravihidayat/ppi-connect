@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 
-import '../../models/user.dart';
+import '../../models/member.dart';
 import '../../models/event.dart';
 import '../../services/event_service.dart';
 
@@ -19,13 +19,13 @@ class MainScreen extends StatefulWidget {
 }
 
 class MainScreenState extends State<MainScreen> {
-  User _user;
+  Member _member;
   List<Event> _eventList;
   Future<List<Event>> _eventListFuture;
 
-  User get user => _user;
-  set user(User value) {
-    _user = value;
+  Member get member => _member;
+  set member(Member value) {
+    _member = value;
     refreshEventListFuture();
   }
 
@@ -36,15 +36,15 @@ class MainScreenState extends State<MainScreen> {
   set eventListFuture(value) => _eventListFuture = value;
 
   void refreshEventListFuture(){
-    if(_user != null){
+    if(_member != null){
       _eventListFuture = EventService.getAllEvent();
       setState(() {});
     }
   }
 
   void addEvent(Event event) async {
-    if (_user != null) {
-      event.user = _user.id;
+    if (_member != null) {
+      event.member = _member.matrix_card;
       final _event = await EventService.addEvent(event);
       setState(() => _eventList.add(_event));
     }
@@ -52,7 +52,7 @@ class MainScreenState extends State<MainScreen> {
 
   void updateEvent({int index, Event event}) async {
     event.id = _eventList[index].id;
-    event.user = _eventList[index].user;
+    event.member = _eventList[index].member;
     _eventList[index] = await EventService.updateEvent(event);
     refreshEventListFuture();
   }
@@ -71,7 +71,7 @@ class MainScreenState extends State<MainScreen> {
           appBar: Bar(
             state: this,
           ),
-          body: _user != null
+          body: _member != null
               ? Body(
                   state: this,
                 )
@@ -103,10 +103,10 @@ class MainScreenState extends State<MainScreen> {
                     ),
                   ),
                 ),
-          drawer: AppDrawer(
+          drawer: _member != null ? AppDrawer(
             state: this,
-          ),
-          floatingActionButton: _user != null
+          ) : null,
+          floatingActionButton: _member != null
               ? Float(
                   state: this,
                 )

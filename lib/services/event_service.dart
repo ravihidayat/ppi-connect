@@ -12,8 +12,8 @@ class EventService {
     return jsonList.map((json) => Event.fromJson(json)).toList();
   }
 
-  static Future<List<Event>> getEventListByUser(int userId) async {
-    final List jsonList = await Rest.get('events?user=$userId');
+  static Future<List<Event>> getEventListByMember(int memberId) async {
+    final List jsonList = await Rest.get('events?member=$memberId');
 
     return jsonList.map((json) => Event.fromJson(json)).toList();
   }

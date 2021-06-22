@@ -11,13 +11,13 @@ class LoginScreen extends StatefulWidget {
 }
 
 class LoginScreenState extends State<LoginScreen> {
-  String _login = '';
+  String _email = '';
   String _password = '';
   bool _showPassword = false;
   bool _showErrorMsg = false;
 
-  String get login => _login;
-  set login(value) => setState(() => _login = value);
+  String get email => _email;
+  set email(value) => setState(() => _email = value);
 
   String get password => _password;
   set password(value) => setState(() => _password = value);

@@ -12,24 +12,22 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  int _id;
+  int _matrix_card;
   String _name;
   String _photoUrl;
-  String _login;
+  String _email;
   String _password;
-  String _role;
+  String _access_grant;
   
   @override
   void initState() {
-    // ignore: event
-    // TODO: implement initState
-    _id = widget._state.userData.id;
-    _name = widget._state.userData.name;
-    _photoUrl = widget._state.userData.photoUrl;
-    _login = widget._state.userData.login;
-    _password = widget._state.userData.password;
-    if(widget._state.userData.role == 1) { _role = 'Member'; }
-    else if(widget._state.userData.role == 2) { _role = 'Management'; }
+    _matrix_card = widget._state.memberData.matrix_card;
+    _name = widget._state.memberData.name;
+    _photoUrl = widget._state.memberData.photoUrl;
+    _email = widget._state.memberData.email;
+    _password = widget._state.memberData.password;
+    if(widget._state.memberData.access_grant == 1) { _access_grant = 'Member'; }
+    else if(widget._state.memberData.access_grant == 2) { _access_grant = 'Management'; }
   }
 
   @override
@@ -47,10 +45,10 @@ class _BodyState extends State<Body> {
                     image: NetworkImage('$_photoUrl'), fit: BoxFit.cover),
                 borderRadius: BorderRadius.all(Radius.circular(75.0)),
                 boxShadow: [BoxShadow(blurRadius: 7.0, color: Colors.black)])),
-        paddedTextField(label: 'ID', value: _id.toString()),
-        paddedTextField(label: 'Username', value: _login),
+        paddedTextField(label: 'Matric No', value: _matrix_card.toString()),
+        paddedTextField(label: 'Username', value: _email),
         paddedTextField(label: 'Name', value: _name),
-        paddedTextField(label: 'Role', value: _role)
+        paddedTextField(label: 'Role', value: _access_grant)
       ],
     );
   }

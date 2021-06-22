@@ -39,15 +39,15 @@ class Body extends StatelessWidget {
           ),
           onTap: () => _eventTap(context, index),
           onLongPress: () {
-            if(_state.user.role == 2) _eventLongPressed(index);
+            if(_state.member.access_grant == 2) _eventLongPressed(index);
           },
         ),
       );
   }
   void _eventTap(BuildContext context, int _index) async {
     final _event = await Navigator.pushNamed(context, '/edit', 
-      arguments: UserEventArguments(
-        _state.user,
+      arguments: MemberEventArguments(
+        _state.member,
         _state.eventList[_index],
       )
     );

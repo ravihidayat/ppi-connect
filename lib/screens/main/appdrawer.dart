@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-import 'package:ppi_connect/models/user.dart';
+import 'package:ppi_connect/models/member.dart';
 import 'package:flutter/material.dart';
 
 import 'main_screen.dart';
@@ -16,19 +16,19 @@ class AppDrawer extends StatelessWidget {
         children: <Widget>[
           UserAccountsDrawerHeader(
               accountName:
-                  Text(_state.user == null ? 'Anonymous' : _state.user.name),
-              accountEmail: Text(_state.user == null
+                  Text(_state.member == null ? 'Anonymous' : _state.member.name),
+              accountEmail: Text(_state.member == null
                   ? 'Anonymous'
-                  : _state.user.id.toString()),
+                  : _state.member.matrix_card.toString()),
               currentAccountPicture: GestureDetector(
-                onTap: () => _state.user == null
+                onTap: () => _state.member == null
                     ? {}
                     : Navigator.pushNamed(context, '/profile',
-                        arguments: _state.user),
+                        arguments: _state.member),
                 child: CircleAvatar(
-                    backgroundImage: _state.user == null
-                        ? AssetImage('assets/unknown_user.png')
-                        : NetworkImage('${_state.user.photoUrl}')),
+                    backgroundImage: _state.member == null
+                        ? AssetImage('assets/unknown_member.png')
+                        : NetworkImage('${_state.member.photoUrl}')),
               )),
         ],
       ),

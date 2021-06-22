@@ -23,7 +23,7 @@ Route<dynamic> createRoute(settings) {
       return EditScreen.route(isEditing: true, data: settings.arguments);
 
     case '/profile':
-      return ProfileScreen.route(userData: settings.arguments);
+      return ProfileScreen.route(memberData: settings.arguments);
   }
   return null;
 }

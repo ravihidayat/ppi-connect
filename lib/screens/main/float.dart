@@ -14,7 +14,7 @@ class Float extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        if(_state.user.role == 2)
+        if(_state.member.access_grant == 2)
         FloatingActionButton(
           tooltip: 'Add a new event',
           heroTag: null,
@@ -33,7 +33,7 @@ class Float extends StatelessWidget {
 
   void onAddPressed(BuildContext context) async {
     final _event = await Navigator.pushNamed(context, '/new',
-      arguments: UserEventArguments(_state.user, Event())
+      arguments: MemberEventArguments(_state.member, Event())
     );
     if(_event != null){
       _state.addEvent(_event);

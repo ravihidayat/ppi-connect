@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../services/user_service.dart';
-import '../../models/user.dart';
+import '../../services/member_service.dart';
+import '../../models/member.dart';
 import 'login_screen.dart';
 
 class Body extends StatelessWidget {
@@ -24,7 +24,7 @@ class Body extends StatelessWidget {
             hint: 'Username',
             icon: Icons.people,
             onChanged: (value) {
-              _state.login = value;
+              _state.email = value;
             }),
         _buildTextField(
             hint: 'Password',
@@ -39,7 +39,7 @@ class Body extends StatelessWidget {
         Visibility(
           visible: _state.showErrorMsg,
           child: Text(
-            'Invalid username or password!',
+            'Invalid membername or password!',
             style: TextStyle(color: Colors.red, fontSize: 20.0),
           ),
         ),
@@ -80,16 +80,16 @@ class Body extends StatelessWidget {
   }
 
   void onLoginPressed(BuildContext context) async {
-    final user = await UserService.getUserByLoginAndPassword(
-      login: _state.login,
+    final member = await MemberService.getMemberByLoginAndPassword(
+      email: _state.email,
       password: _state.password,
     );
 
-    if(user == null){
+    if(member == null){
       _state.showErrorMsg = true;
     }else{
       _state.showErrorMsg = false;
-      Navigator.pop(context, user);
+      Navigator.pop(context, member);
     }
   }
   void onCancelPressed(BuildContext context){

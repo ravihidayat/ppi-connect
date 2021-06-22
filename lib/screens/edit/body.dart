@@ -25,7 +25,7 @@ class _Body extends State<Body> {
     super.initState();
     if(widget._state.isEditing == true){
       _title = widget._state.data.title;
-      _desc = widget._state.data.description;
+      _desc = widget._state.data.desc;
       _category = widget._state.data.category;
       _done = widget._state.data.done;
     }
@@ -35,14 +35,14 @@ class _Body extends State<Body> {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        widget._state.user.role == 2 ?
+        widget._state.member.access_grant == 2 ?
         _buildTextInputListTile(
           label: 'Title',
           value: _title,
           onChanged: (value) {
           setState(() => _title = value);
         }) : Container(),
-        widget._state.user.role == 2 ?
+        widget._state.member.access_grant == 2 ?
         _buildTextInputListTile(
           label: 'Description',
           value:  _desc,
@@ -89,7 +89,7 @@ class _Body extends State<Body> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        widget._state.user.role == 2 ?
+        widget._state.member.access_grant == 2 ?
         ElevatedButton(
           onPressed: () => widget._state.isEditing == true ? 
             _onEventOkPressedEdit(context) : _onEventOkPressedAdd(context),
@@ -98,7 +98,7 @@ class _Body extends State<Body> {
         SizedBox(width: 10.0),
         ElevatedButton(
           onPressed: () => _onEventCancelPressed(context),
-          child: widget._state.user.role == 2? Text('Cancel') : Text('Back'),
+          child: widget._state.member.access_grant == 2? Text('Cancel') : Text('Back'),
         ),
       ],
     );
@@ -109,7 +109,7 @@ class _Body extends State<Body> {
       child: DropdownButton<String>(
         value: _category == ''? null : _category,
         style: TextStyle(color: Colors.black),
-        items: widget._state.user.role == 1 ? null : [
+        items: widget._state.member.access_grant == 1 ? null : [
           'Human Dev',
           'Strategic Studies',
           'Sport',
@@ -122,7 +122,7 @@ class _Body extends State<Body> {
           );
         }).toList(),
         hint: Text(
-          (widget._state.user.role == 1 && widget._state.isEditing) ? 
+          (widget._state.member.access_grant == 1 && widget._state.isEditing) ? 
           _category :
           'Please choose a Category',
           style: TextStyle(
@@ -131,7 +131,7 @@ class _Body extends State<Body> {
             fontWeight: FontWeight.w600),
           ),
         onChanged: (String value) {
-          if(widget._state.user.role == 2){
+          if(widget._state.member.access_grant == 2){
             setState(() { _category = value; });
           }
         },
@@ -140,7 +140,7 @@ class _Body extends State<Body> {
   }
 
   dynamic _doneCheckList(BuildContext context){
-    if(widget._state.isEditing == true && widget._state.user.role == 2){
+    if(widget._state.isEditing == true && widget._state.member.access_grant == 2){
       return CheckboxListTile(
         value: _done,
         onChanged: (value) {
@@ -154,14 +154,14 @@ class _Body extends State<Body> {
 
   void _onEventOkPressedAdd(BuildContext context) async {
     if(!(_desc == '' || _title == '' || _category == '')){
-      var _event = Event(description: _desc, title: _title, category: _category);
+      var _event = Event(event_details: _desc, event_title: _title, event_category: _category);
       Navigator.pop(context, _event);
     }
   }
 
   void _onEventOkPressedEdit(BuildContext context) async {
     if(!(_desc == '' || _title == '')){
-      var _event = Event(description: _desc, title: _title, done: _done, category: _category);
+      var _event = Event(event_details: _desc, event_title: _title, done: _done, event_category: _category);
       Navigator.pop(context, _event);
     }
   }

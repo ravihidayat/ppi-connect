@@ -1,5 +1,5 @@
 import 'package:ppi_connect/arguments/argument.dart';
-import 'package:ppi_connect/models/user.dart';
+import 'package:ppi_connect/models/member.dart';
 import 'package:ppi_connect/screens/edit/bar.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +18,7 @@ class EditScreen extends StatefulWidget {
   dynamic get data => _data;
   EditScreen({isEditing, data})
       : _isEditing = isEditing,
-        _data = data as UserEventArguments;
+        _data = data as MemberEventArguments;
         
 
   @override
@@ -27,7 +27,7 @@ class EditScreen extends StatefulWidget {
 
 class EditScreenState extends State<EditScreen> {
   Event get data => widget.data.event;
-  User get user => widget.data.user;
+  Member get member => widget.data.member;
   bool get isEditing => widget.isEditing;
 
   @override

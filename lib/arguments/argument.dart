@@ -1,9 +1,9 @@
 import 'package:ppi_connect/models/event.dart';
-import 'package:ppi_connect/models/user.dart';
+import 'package:ppi_connect/models/member.dart';
 
-class UserEventArguments{
-  final User user;
+class MemberEventArguments{
+  final Member member;
   final Event event;
 
-  UserEventArguments(this.user, this.event);
+  MemberEventArguments(this.member, this.event);
 }
