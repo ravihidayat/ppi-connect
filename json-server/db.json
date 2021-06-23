@@ -19,38 +19,38 @@
   ],
   "events": [
     {
-      "id": 1,
+      "event_id": 1,
       "event_title": "Prepare project proposal",
       "event_details": "To write a proposal for a new client company. Plan: using Flutter framework",
       "event_date": "2020-05-05",
       "event_category": "Human Dev"
     },
     {
-      "id": 2,
+      "event_id": 2,
       "event_title": "Replace light bulb",
       "event_details": "Buy the bulb from online. Prefer to buy a LED bulb",
       "event_date": "2021-06-06",
       "event_category": "Strategic Studies"
     },
     {
-      "id": 3,
+      "event_id": 3,
       "event_title": "Buy Flutter eBooks",
       "event_details": "1. Beginning App Development with Flutter by Rap Payne.  2. Beginning Flutter: A Hands on Guide to App Development by Marco L. Napoli",
       "event_date": "2021-07-07",
       "event_category": "Sport"
     },
     {
-      "id": 4,
+      "event_id": 4,
       "event_title": "Subscribe to an internet service",
       "event_details": "Plan to subscribe a fibre optic based service. Potential provider: TM Unifi and Maxis",
       "event_date": "2021-08-08",
       "event_category": "Academic"
     },
     {
-      "id": 5,
+      "event_id": 5,
       "event_title": "Online meeting with friends",
       "event_details": "To discuss about the plan for setting up an online shopping store",
-      "event_date": "2021-08-08",
+      "event_date": "2021-08-08 00:00:00.000",
       "event_category": "Arts or Music"
     }
   ]
