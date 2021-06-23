@@ -36,25 +36,25 @@ class Event {
 
 
   Event.copy(Event from) : this(
+    id: from.id,
     event_title: from.title,
     event_details: from.desc,
     event_date: from.date,
-    id: from.id,
     event_category: from.category,
   );
 
   Event.fromJson(Map<String, dynamic> json)
-    : _event_title = json['event_title'],
+    : _id = json['id'],
+      _event_title = json['event_title'],
       _event_details = json['event_details'],
       _event_date = DateTime.tryParse(json['event_date']), 
-      _id = json['event_id'],
       _event_category = json['event_category'];
 
   Map<String, dynamic> toJson() => {
+    'id': _id,
     'event_title': _event_title,
     'event_details': _event_details,
     'event_date': _event_date.toString(),
-    'event_id': _id,
     'event_category': _event_category,
   };
 }
