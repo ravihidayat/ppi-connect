@@ -5,14 +5,14 @@
 
 ### Request 1 : Get a member whose correct 'email' and 'password'
 ### Purpose   : To simulate the authentication process. 
-GET {{baseUrl}}/members?email=alex&password=123x
+GET {{baseUrl}}/member?email=alex&password=123x
 
-### Request 2 : Get the list of events for a given member
+### Request 2 : Get the list of event for a given member
 ### Purpose   : To render the main screen
-GET {{baseUrl}}/events?member=2
+GET {{baseUrl}}/event?member=2
 
 ### Request 3 : Create a new event for a given member
-POST {{baseUrl}}/events
+POST {{baseUrl}}/event
 Content-Type: application/json
 
 {
@@ -23,7 +23,7 @@ Content-Type: application/json
 }
 
 ### Request 4 : Update the information of a given event
-PUT {{baseUrl}}/events/6
+PUT {{baseUrl}}/event/6
 Content-Type: application/json
 
 {
@@ -35,4 +35,4 @@ Content-Type: application/json
 
 
 ### Request 5 : Delete a given event
-DELETE {{baseUrl}}/events/6
+DELETE {{baseUrl}}/event/6

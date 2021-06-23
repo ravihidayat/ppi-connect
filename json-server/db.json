@@ -1,5 +1,5 @@
 {
-  "members": [
+  "member": [
     {
       "matrix_card": "m1matric",
       "name": "Alexander Holmes",
@@ -17,7 +17,7 @@
       "access_grant": 2
     }
   ],
-  "events": [
+  "event": [
     {
       "id": 1,
       "event_title": "Prepare project proposal",
