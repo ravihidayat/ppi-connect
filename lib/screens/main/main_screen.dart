@@ -44,6 +44,8 @@ class MainScreenState extends State<MainScreen> {
 
   void addEvent(Event event) async {
     if (_member != null) {
+      event.id = _eventList[_eventList.length - 1].id + 1;
+      inspect(event.id);
       final _event = await EventService.addEvent(event);
       setState(() => _eventList.add(_event));
     }
