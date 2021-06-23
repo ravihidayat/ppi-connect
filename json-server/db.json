@@ -3,7 +3,6 @@
     {
       "matrix_card": "m1matric",
       "name": "Alexander Holmes",
-      "photoUrl": "https://randomuser.me/api/portraits/thumb/men/75.jpg",
       "email": "alex",
       "password": "123",
       "access_grant": 1
@@ -11,7 +10,6 @@
     {
       "matrix_card": "m2matric",
       "name": "Jessica Walters",
-      "photoUrl": "https://randomuser.me/api/portraits/thumb/women/75.jpg",
       "email": "jessica",
       "password": "123",
       "access_grant": 2

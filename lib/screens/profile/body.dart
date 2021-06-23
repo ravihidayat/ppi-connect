@@ -23,7 +23,7 @@ class _BodyState extends State<Body> {
   void initState() {
     _matrix_card = widget._state.memberData.matrix_card;
     _name = widget._state.memberData.name;
-    _photoUrl = widget._state.memberData.photoUrl;
+    // _photoUrl = widget._state.memberData.photoUrl;
     _email = widget._state.memberData.email;
     _password = widget._state.memberData.password;
     if(widget._state.memberData.access_grant == 1) { _access_grant = 'Member'; }
@@ -42,7 +42,7 @@ class _BodyState extends State<Body> {
             decoration: BoxDecoration(
                 color: Colors.red,
                 image: DecorationImage(
-                    image: NetworkImage('$_photoUrl'), fit: BoxFit.cover),
+                    image: AssetImage('assets/unknown_user.png'), fit: BoxFit.cover),
                 borderRadius: BorderRadius.all(Radius.circular(75.0)),
                 boxShadow: [BoxShadow(blurRadius: 7.0, color: Colors.black)])),
         paddedTextField(label: 'Matric No', value: _matrix_card),

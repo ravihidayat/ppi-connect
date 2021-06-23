@@ -28,12 +28,13 @@ class Body extends StatelessWidget {
     return ListView.separated(
         itemCount: _state.eventList.length,
         separatorBuilder: (context, index) => Divider(
-          color: Colors.blueGrey,
+          color: Colors.red,
         ),
         itemBuilder: (context, index) => ListTile(
+          tileColor: _state.eventList[index].date.isBefore(DateTime.now()) ? Colors.amber[100] : Colors.white,
+          leading: CircleAvatar(backgroundImage: AssetImage('assets/ppi.png'),),
           title: Text(
-            '${_state.eventList[index].title}',
-            style: TextStyle(decoration: _state.eventList[index].date.isBefore(DateTime.now()) ? TextDecoration.lineThrough : TextDecoration.none)),
+            '${_state.eventList[index].title}'),
           subtitle: Text(
             '${_state.eventList[index].category}'
           ),

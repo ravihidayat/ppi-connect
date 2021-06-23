@@ -1,7 +1,7 @@
 class Member {
   String _matrix_card;
   String _name;
-  String _photoUrl;
+  // String _photoUrl;
   String _email;
   String _password;
 
@@ -13,8 +13,8 @@ class Member {
   String get name => _name;
   set name(value) => _name = value;
 
-  String get photoUrl => _photoUrl;
-  set photoUrl(value) => _photoUrl = value;
+  // String get photoUrl => _photoUrl;
+  // set photoUrl(value) => _photoUrl = value;
 
   String get email => _email;
   set email(value) => _email = value;
@@ -34,7 +34,7 @@ class Member {
       int access_grant})
       : _matrix_card = matrix_card,
         _name = name,
-        _photoUrl = photoUrl,
+        // _photoUrl = photoUrl,
         _email = email,
         _password = password,
         _access_grant = access_grant;
@@ -43,7 +43,7 @@ class Member {
       : this(
             matrix_card: from.matrix_card,
             name: from.name,
-            photoUrl: from.photoUrl,
+            // photoUrl: from.photoUrl,
             email: from.email,
             password: from.password,
             access_grant: from.access_grant);
@@ -51,7 +51,7 @@ class Member {
   Member.fromJson(Map<String, dynamic> json)
     : _matrix_card = json['matrix_card'],
       _name = json['name'],
-      _photoUrl = json['photoUrl'], 
+      // _photoUrl = json['photoUrl'], 
       _email = json['email'], 
       _password = json['password'], 
       _access_grant = json['access_grant'];
@@ -60,7 +60,7 @@ class Member {
   Map<String, dynamic> toJson() => {
     'matrix_card': _matrix_card,
     'name': _name,
-    'photoUrl': _photoUrl,
+    // 'photoUrl': _photoUrl,
     'email': _email,
     'password': _password,
     'access_grant': _access_grant,

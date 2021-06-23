@@ -26,9 +26,7 @@ class AppDrawer extends StatelessWidget {
                     : Navigator.pushNamed(context, '/profile',
                         arguments: _state.member),
                 child: CircleAvatar(
-                    backgroundImage: _state.member == null
-                        ? AssetImage('assets/unknown_member.png')
-                        : NetworkImage('${_state.member.photoUrl}')),
+                    backgroundImage: AssetImage('assets/unknown_user.png')),
               )),
         ],
       ),
