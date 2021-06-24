@@ -3,7 +3,15 @@ import 'package:http/http.dart' as http;
 
 class Rest {
   //? Change the baseUrl according to your PC's IP address. Remain the port as 3000
+  //No backend
   static const String _baseUrl = 'http://10.100.21.67:3000';
+  
+  //localbackend
+  //static const String _baseUrl = 'http://10.0.2.2:3000';
+
+  //deploy backend
+  //static const String _baseUrl = '';
+  
   // static const String _baseUrl = 'https://myjson'
   //'http://192.168.0.5:3000';
 

@@ -7,32 +7,30 @@
 ### Purpose   : To simulate the authentication process. 
 GET {{baseUrl}}/member?email=alex&password=123x
 
-### Request 2 : Get the list of event for a given member
-### Purpose   : To render the main screen
-GET {{baseUrl}}/event?member=2
-
-### Request 3 : Create a new event for a given member
+### Request 3 : Create a new event
 POST {{baseUrl}}/event
 Content-Type: application/json
 
 {
-    "member": 2,
-    "title": "A new event",
-    "description": "This is a new event",
-    "done": false
+    "event_title": "e0title",
+    "event_category": "Sport",
+    "event_venue": "e0venue",
+    "open_for": "Participants",
+    "closed_on": "2021-04-03T16:00:00.000Z",
+    "event_details": "e0details",
+    "event_url": "https://form.typeform.com/to/bOOqUGlh?typeform-medium=embed-snippet",
+    "event_date": "2021-05-04T16:00:00.000Z",
+    "event_pic1": "e0pic1.PNG"
 }
 
 ### Request 4 : Update the information of a given event
-PUT {{baseUrl}}/event/6
+PUT {{baseUrl}}/event/4
 Content-Type: application/json
 
 {
-    "member": 2,
-    "title": "Updated title",
-    "description": "Updated description",
-    "done": false
+    "event_title": "e4title"
 }
 
 
 ### Request 5 : Delete a given event
-DELETE {{baseUrl}}/event/6
+DELETE {{baseUrl}}/event/4
