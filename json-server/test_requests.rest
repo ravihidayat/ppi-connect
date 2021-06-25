@@ -1,7 +1,7 @@
 ### Use this file to test out your REST call before implementing them in the code
 
 ### Change the IP address below to your PC's IP address. Remain the port number 3000 unchanged
-@baseUrl = http://10.100.21.67:3000
+@baseUrl = http://10.100.22.125:3000
 
 ### Request 1 : Get a member whose correct 'email' and 'password'
 ### Purpose   : To simulate the authentication process. 
