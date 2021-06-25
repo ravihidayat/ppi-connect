@@ -19,6 +19,7 @@ class Body extends StatefulWidget {
 class _Body extends State<Body> {
   String _title = '';
   String _desc = '';
+  String _venue = '';
   String _category = '';
   DateTime _date = DateTime.now();
 
@@ -28,6 +29,7 @@ class _Body extends State<Body> {
     if(widget._state.isEditing == true){
       _title = widget._state.data.title;
       _desc = widget._state.data.desc;
+      _venue = widget._state.data.venue;
       _category = widget._state.data.category;
       _date = widget._state.data.date;
     }
@@ -59,9 +61,24 @@ class _Body extends State<Body> {
             ),
           ),
         ),
+        widget._state.member.access_grant == 2 ?
+        _buildTextInputListTile(
+          label: 'Venue',
+          value: _venue,
+          onChanged: (value) {
+            setState(() => _venue = value);
+        }) : Center(
+          child: Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Text(
+              _venue,
+              style: TextStyle(color: Colors.black, fontSize: 20),
+            ),
+          ),
+        ),
         _dropDownCategory(context),
         Visibility(
-          visible: (_desc == '' || _title == '' || _category == ''),
+          visible: (_desc == '' || _title == '' || _venue == '' || _category == ''),
           child: Center(
             child: Text(
               'Don\'t leave any field empty',
@@ -159,15 +176,15 @@ class _Body extends State<Body> {
   }
 
   void _onEventOkPressedAdd(BuildContext context) async {
-    if(!(_desc == '' || _title == '' || _category == '')){
-      var _event = Event(event_details: _desc, event_title: _title, event_date: _date, event_category: _category);
+    if(!(_desc == '' || _title == '' || _venue == '' || _category == '')){
+      var _event = Event(event_details: _desc, event_title: _title, event_date: _date, event_venue: _venue, event_category: _category);
       Navigator.pop(context, _event);
     }
   }
 
   void _onEventOkPressedEdit(BuildContext context) async {
-    if(!(_desc == '' || _title == '')){
-      var _event = Event(event_details: _desc, event_title: _title, event_date: _date, event_category: _category);
+    if(!(_desc == '' || _title == '' || _venue == '')){
+      var _event = Event(event_details: _desc, event_title: _title, event_date: _date, event_venue: _venue, event_category: _category);
       Navigator.pop(context, _event);
     }
   }
