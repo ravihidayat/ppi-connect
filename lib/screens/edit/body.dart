@@ -132,7 +132,7 @@ class _Body extends State<Body> {
       child: DropdownButton<String>(
         value: _category == ''? null : _category,
         style: TextStyle(color: Colors.black),
-        items: widget._state.member.access_grant == 1 ? null : [
+        items: widget._state.member.access_grant != 2 ? null : [
           'Human Dev',
           'Strategic Studies',
           'Sport',
@@ -145,7 +145,7 @@ class _Body extends State<Body> {
           );
         }).toList(),
         hint: Text(
-          (widget._state.member.access_grant == 1 && widget._state.isEditing) ? 
+          (widget._state.member.access_grant != 2 && widget._state.isEditing) ? 
           _category :
           'Please choose a Category',
           style: TextStyle(

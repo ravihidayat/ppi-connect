@@ -1,11 +1,24 @@
 ### Use this file to test out your REST call before implementing them in the code
 
 ### Change the IP address below to your PC's IP address. Remain the port number 3000 unchanged
-@baseUrl = http://10.100.22.125:3000
+#@baseUrl = http://10.100.22.125:3000
+@baseUrl = https://ppiconnect.herokuapp.com
+
+### Getting the list of Member
+GET {{baseUrl}}/member
+
+###  Getting a Member of given matric
+GET {{baseUrl}}/member/m1matric
 
 ### Request 1 : Get a member whose correct 'email' and 'password'
 ### Purpose   : To simulate the authentication process. 
-GET {{baseUrl}}/member?email=alex&password=123x
+GET {{baseUrl}}/member?email=todopsain11@gmail.com&password=m1password
+
+### Getting the list of Event
+GET {{baseUrl}}/event
+
+###  Getting a Event of given id
+GET {{baseUrl}}/event/1
 
 ### Request 3 : Create a new event
 POST {{baseUrl}}/event
@@ -24,7 +37,7 @@ Content-Type: application/json
 }
 
 ### Request 4 : Update the information of a given event
-PUT {{baseUrl}}/event/4
+PATCH {{baseUrl}}/event/25
 Content-Type: application/json
 
 {
@@ -33,4 +46,4 @@ Content-Type: application/json
 
 
 ### Request 5 : Delete a given event
-DELETE {{baseUrl}}/event/4
+DELETE {{baseUrl}}/event/25

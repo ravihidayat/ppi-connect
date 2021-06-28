@@ -45,6 +45,7 @@ class Bar extends StatelessWidget implements PreferredSizeWidget {
     if(_state.member != null){
       if(_state.member.access_grant == 1){ return 'Member'; }
       else if(_state.member.access_grant == 2){ return 'Management'; }
+      else if(_state.member.access_grant == 3){ return 'Admin'; }
     }
     return 'Welcome to PPI-UTM Apps';
   }

@@ -14,20 +14,17 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   String _matrix_card;
   String _name;
-  String _photoUrl;
   String _email;
-  String _password;
   String _access_grant;
   
   @override
   void initState() {
     _matrix_card = widget._state.memberData.matrix_card;
     _name = widget._state.memberData.name;
-    // _photoUrl = widget._state.memberData.photoUrl;
     _email = widget._state.memberData.email;
-    _password = widget._state.memberData.password;
     if(widget._state.memberData.access_grant == 1) { _access_grant = 'Member'; }
     else if(widget._state.memberData.access_grant == 2) { _access_grant = 'Management'; }
+    else if(widget._state.memberData.access_grant == 3) { _access_grant = 'Admin'; }
   }
 
   @override
