@@ -39,7 +39,7 @@ class Body extends StatelessWidget {
         Visibility(
           visible: _state.showErrorMsg,
           child: Text(
-            'Invalid membername or password!',
+            'Invalid email or password!',
             style: TextStyle(color: Colors.red, fontSize: 20.0),
           ),
         ),
