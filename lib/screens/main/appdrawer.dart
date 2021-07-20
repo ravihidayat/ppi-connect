@@ -18,10 +18,10 @@ class AppDrawer extends StatelessWidget {
           children: <Widget>[
             UserAccountsDrawerHeader(
                 accountName: Text(memberNotifier.member == null
-                    ? 'Anonymous'
+                    ? 'Guest'
                     : memberNotifier.member.name),
                 accountEmail: Text(memberNotifier.member == null
-                    ? 'Anonymous'
+                    ? 'Guest'
                     : memberNotifier.member.matrix_card),
                 currentAccountPicture: GestureDetector(
                   onTap: () => memberNotifier.member == null
