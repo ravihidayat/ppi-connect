@@ -38,33 +38,32 @@ class Body extends StatelessWidget {
           return Consumer<MemberNotifier>(
               builder: (context, memberNotifier, __) {
             return SafeArea(
-              child: ListView.separated(
-                  itemCount: eventsList.length,
-                  itemBuilder: (context, index) {
-                    return Card(
-                      elevation: 10,
-                      child: ListTile(
-                          tileColor:
-                              eventsList[index].date.isBefore(DateTime.now())
-                                  ? Colors.amber
-                                  : Colors.white,
-                          leading: CircleAvatar(
-                            backgroundImage: AssetImage('assets/ppi.png'),
-                          ),
-                          title: Text('${eventsList[index].title}'),
-                          subtitle: Text('${eventsList[index].category}'),
-                          onTap: () => _eventTap(context, index, eventsList,
-                              eventProv, memberNotifier),
-                          onLongPress: () {
-                            if (memberNotifier.member.access_grant == 2) {
-                              _eventLongPressed(index, eventProv);
-                            }
-                          }),
-                    );
-                  },
-                  separatorBuilder: (context, index) {
-                    return Divider(color: Colors.white70);
-                  }),
+              child: ListView.builder(
+                itemCount: eventsList.length,
+                itemBuilder: (context, index) {
+                  return Card(
+                    margin: EdgeInsets.symmetric(horizontal: 30, vertical: 8),
+                    elevation: 10,
+                    child: ListTile(
+                        tileColor:
+                            eventsList[index].date.isBefore(DateTime.now())
+                                ? Colors.amber
+                                : Colors.white,
+                        leading: CircleAvatar(
+                          backgroundImage: AssetImage('assets/ppi.png'),
+                        ),
+                        title: Text('${eventsList[index].title}'),
+                        subtitle: Text('${eventsList[index].category}'),
+                        onTap: () => _eventTap(context, index, eventsList,
+                            eventProv, memberNotifier),
+                        onLongPress: () {
+                          if (memberNotifier.member.access_grant == 2) {
+                            _eventLongPressed(index, eventProv);
+                          }
+                        }),
+                  );
+                },
+              ),
             );
           });
         });
