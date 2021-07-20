@@ -12,11 +12,6 @@ class EventNotifier with ChangeNotifier {
 
   EventService get eventService => service();
 
-  void addEvent() {
-    // _events.add(value);
-    notifyListeners();
-  }
-
   Future<void> getEvents() async {
     _events = await EventService.getAllEvent();
     notifyListeners();
@@ -26,6 +21,20 @@ class EventNotifier with ChangeNotifier {
     event.id = _events[index].id;
     _events[index] = await EventService.updateEvent(event);
     changedEvent = event;
+    notifyListeners();
+  }
+
+  void addEvent({Event event}) async {
+    final _event = await EventService.addEvent(event);
+    _events.add(_event);
+    changedEvent = event;
+    notifyListeners();
+  }
+
+  void removeEvent({int index}) async {
+    final _event = _events[index];
+    await EventService.removeEvent(_events[index]);
+    changedEvent = _event;
     notifyListeners();
   }
 }

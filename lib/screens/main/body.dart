@@ -50,7 +50,7 @@ class Body extends StatelessWidget {
                         _eventTap(context, index, eventsList, eventProv),
                     onLongPress: () {
                       if (_state.member.access_grant == 2) {
-                        _eventLongPressed(index, eventsList[index]);
+                        _eventLongPressed(index, eventProv);
                       }
                     });
               },
@@ -111,9 +111,9 @@ class Body extends StatelessWidget {
     }
   }
 
-  void _eventLongPressed(int index, Event e) {
-    if (e.date.isBefore(DateTime.now())) {
-      _state.removeEvent(index);
+  void _eventLongPressed(int index, EventNotifier en) {
+    if (en.events[index].date.isBefore(DateTime.now())) {
+      en.removeEvent(index: index);
     }
   }
 }

@@ -104,11 +104,11 @@ class MainScreenState extends State<MainScreen> {
           drawer: _member != null ? AppDrawer(
             state: this,
           ) : null,
-          // floatingActionButton: _member != null
-          //     ? Float(
-          //         state: this,
-          //       )
-          //     : null,
+          floatingActionButton: _member != null
+              ? Float(
+                  state: this,
+                )
+              : null,
         ),
       ),
     );
