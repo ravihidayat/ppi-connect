@@ -15,7 +15,6 @@ class MemberNotifier with ChangeNotifier {
       email: _email,
       password: _password,
     );
-    print(_member.email);
     notifyListeners();
   }
 }

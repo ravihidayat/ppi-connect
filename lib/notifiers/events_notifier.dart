@@ -14,6 +14,7 @@ class EventNotifier with ChangeNotifier {
 
   Future<void> getEvents() async {
     _events = await EventService.getAllEvent();
+    changedEvent = _events[_events.length - 1];
     notifyListeners();
   }
 
@@ -34,7 +35,7 @@ class EventNotifier with ChangeNotifier {
   void removeEvent({int index}) async {
     final _event = _events[index];
     await EventService.removeEvent(_events[index]);
-    changedEvent = _event;
+    changedEvent = null;
     notifyListeners();
   }
 }

@@ -16,15 +16,19 @@ class _BodyState extends State<Body> {
   String _name;
   String _email;
   String _access_grant;
-  
+
   @override
   void initState() {
     _matrix_card = widget._state.memberData.matrix_card;
     _name = widget._state.memberData.name;
     _email = widget._state.memberData.email;
-    if(widget._state.memberData.access_grant == 1) { _access_grant = 'Member'; }
-    else if(widget._state.memberData.access_grant == 2) { _access_grant = 'Management'; }
-    else if(widget._state.memberData.access_grant == 3) { _access_grant = 'Admin'; }
+    if (widget._state.memberData.access_grant == 1) {
+      _access_grant = 'Member';
+    } else if (widget._state.memberData.access_grant == 2) {
+      _access_grant = 'Management';
+    } else if (widget._state.memberData.access_grant == 3) {
+      _access_grant = 'Admin';
+    }
   }
 
   @override
@@ -39,7 +43,9 @@ class _BodyState extends State<Body> {
             decoration: BoxDecoration(
                 color: Colors.red,
                 image: DecorationImage(
-                    image: AssetImage('assets/unknown_user.png'), fit: BoxFit.cover),
+                    image: NetworkImage(
+                        'https://source.unsplash.com/random/200x200'),
+                    fit: BoxFit.cover),
                 borderRadius: BorderRadius.all(Radius.circular(75.0)),
                 boxShadow: [BoxShadow(blurRadius: 7.0, color: Colors.black)])),
         paddedTextField(label: 'Matric No', value: _matrix_card),
@@ -52,7 +58,7 @@ class _BodyState extends State<Body> {
 
   Padding paddedTextField({label, value}) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(50, 2, 50, 2),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
       child: TextFormField(
         initialValue: value,
         decoration: InputDecoration(labelText: label),

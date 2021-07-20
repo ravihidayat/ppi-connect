@@ -17,9 +17,12 @@ class AppDrawer extends StatelessWidget {
         child: Column(
           children: <Widget>[
             UserAccountsDrawerHeader(
-                accountName: Text(memberNotifier.member == null
-                    ? 'Guest'
-                    : memberNotifier.member.name),
+                accountName: Text(
+                  memberNotifier.member == null
+                      ? 'Guest'
+                      : memberNotifier.member.name,
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
                 accountEmail: Text(memberNotifier.member == null
                     ? 'Guest'
                     : memberNotifier.member.matrix_card),
@@ -29,7 +32,9 @@ class AppDrawer extends StatelessWidget {
                       : Navigator.pushNamed(context, '/profile',
                           arguments: memberNotifier.member),
                   child: CircleAvatar(
-                      backgroundImage: AssetImage('assets/unknown_user.png')),
+                      radius: 400,
+                      backgroundImage: NetworkImage(
+                          'https://source.unsplash.com/random/200x200')),
                 )),
           ],
         ),
