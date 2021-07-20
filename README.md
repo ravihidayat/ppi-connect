@@ -9,7 +9,7 @@ Indonesia ISS mobile application project: PPI-Connect
     - Baron Gobi Ramadhan Natanegara
     - Kemal Achmad Zulkarnain
 ```
-
+Credentials for the auth can be accessed in json-server/Credentials.txt
 ## Installation
 
 Clone the repo
