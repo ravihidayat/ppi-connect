@@ -9,12 +9,13 @@ import 'dependencies.dart' as di;
 void main() {
   di.init();
   runApp(
-    MultiProvider(providers: [
-      FutureProvider<List<Event>>(create: (_)=> EventService.getAllEvent()),
-      ChangeNotifierProvider<ValueNotifier<Event>>(
-      create: (ctx) => ValueNotifier<Event>(null)),
-    ],
-    
+    MultiProvider(
+      providers: [
+        // FutureProvider<List<Event>>(create: (_)=> EventService.getAllEvent()),
+        ChangeNotifierProvider<EventNotifier>(
+          create: (_) => EventNotifier(),
+        )
+      ],
       child: MaterialApp(
         title: 'PPI UTM Connect',
         debugShowCheckedModeBanner: false,
