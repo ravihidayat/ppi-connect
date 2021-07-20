@@ -9,13 +9,22 @@ Indonesia ISS mobile application project: PPI-Connect
     - Baron Gobi Ramadhan Natanegara
     - Kemal Achmad Zulkarnain
 ```
+## Repos & Presentation Link:
+```
+https://github.com/ravihidayat/ppi-connect
+https://github.com/ravihidayat/ppi_connect_backend
+
+https://youtu.be/ZANzSw2pP_k
+```
 Credentials for the auth can be accessed in json-server/Credentials.txt
+
 ## Installation
 
 Clone the repo
 
 ```
 git clone https://github.com/ravihidayat/ppi-connect.git
+
 ```
 
 Install dependencies
