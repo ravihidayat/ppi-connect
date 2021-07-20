@@ -21,7 +21,7 @@ class Body extends StatelessWidget {
           width: 250,
         ),
         _buildTextField(
-            hint: 'Username',
+            hint: 'Email',
             icon: Icons.people,
             onChanged: (value) {
               _state.email = value;
@@ -30,9 +30,11 @@ class Body extends StatelessWidget {
             hint: 'Password',
             isObsecure: !_state.showPassword,
             icon: Icons.lock,
-            button: IconButton(icon: Icon(Icons.visibility), onPressed: () {
-              _state.showPassword = !_state.showPassword;
-            }),
+            button: IconButton(
+                icon: Icon(Icons.visibility),
+                onPressed: () {
+                  _state.showPassword = !_state.showPassword;
+                }),
             onChanged: (value) {
               _state.password = value;
             }),
@@ -85,14 +87,15 @@ class Body extends StatelessWidget {
       password: _state.password,
     );
 
-    if(member == null){
+    if (member == null) {
       _state.showErrorMsg = true;
-    }else{
+    } else {
       _state.showErrorMsg = false;
       Navigator.pop(context, member);
     }
   }
-  void onCancelPressed(BuildContext context){
+
+  void onCancelPressed(BuildContext context) {
     Navigator.pop(context, null);
   }
 }

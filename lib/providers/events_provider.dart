@@ -5,7 +5,7 @@ import '../services/event_service.dart';
 import '../dependencies.dart';
 
 class Events with ChangeNotifier {
-  List<Event> _events=[];
+  List<Event> _events = [];
 
   List<Event> get events => _events;
 
@@ -14,10 +14,16 @@ class Events with ChangeNotifier {
   void addEvent() {
     // _events.add(value);
     notifyListeners();
-  }
+  } 
 
   Future<void> getEvents() async {
     _events = await EventService.getAllEvent();
+    notifyListeners();
+  }
+
+  void updateEvent({int index, Event event}) async {
+    event.id = _events[index].id;
+    _events[index] = await EventService.updateEvent(event);
     notifyListeners();
   }
 }

@@ -25,38 +25,75 @@ class Body extends StatelessWidget {
     //         child: Text('Please Login'),
     //       );
     //     });
-    return Selector<Events, int>(
-        selector: (_, eventNotifier) => eventNotifier.events?.length,
-        builder: (context, _, __) {
-          final eventProv = Provider.of<Events>(context);
-          eventProv.getEvents();
-          final eventsList = eventProv.events;
-          if (eventsList == null) {
-            return Center(child: CircularProgressIndicator());
-          }
-          return ListView.separated(
-              itemCount: eventsList.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                    tileColor: eventsList[index].date.isBefore(DateTime.now())
-                        ? Colors.amber
-                        : Colors.white,
-                    leading: CircleAvatar(
-                      backgroundImage: AssetImage('assets/ppi.png'),
-                    ),
-                    title: Text('${eventsList[index].title}'),
-                    subtitle: Text('${eventsList[index].category}'),
-                    onTap: () => _eventTap(context, index, eventsList[index]),
-                    onLongPress: () {
-                      if (_state.member.access_grant == 2) {
-                        _eventLongPressed(index, eventsList[index]);
-                      }
-                    });
-              },
-              separatorBuilder: (context, index) {
-                return Divider(color: Colors.red);
-              });
-        });
+    // return Selector<Events, int>(
+    //     selector: (_, eventNotifier) => eventNotifier.events?.length,
+    //     builder: (context, _, __) {
+    //       final eventProv = Provider.of<Events>(context);
+    //       eventProv.getEvents();
+    //       final eventsList = eventProv.events;
+    //       if (eventsList == null) {
+    //         return Center(child: CircularProgressIndicator());
+    //       }
+    //       return ListView.separated(
+    //           itemCount: eventsList.length,
+    //           itemBuilder: (context, index) {
+    //             return ListTile(
+    //                 tileColor: eventsList[index].date.isBefore(DateTime.now())
+    //                     ? Colors.amber
+    //                     : Colors.white,
+    //                 leading: CircleAvatar(
+    //                   backgroundImage: AssetImage('assets/ppi.png'),
+    //                 ),
+    //                 title: Text('${eventsList[index].title}'),
+    //                 subtitle: Text('${eventsList[index].category}'),
+    //                 onTap: () =>
+    //                     _eventTap(context, index, eventsList, eventProv),
+    //                 onLongPress: () {
+    //                   if (_state.member.access_grant == 2) {
+    //                     _eventLongPressed(index, eventsList[index]);
+    //                   }
+    //                 });
+    //           },
+    //           separatorBuilder: (context, index) {
+    //             return Divider(color: Colors.red);
+    //           });
+    //     });
+    return Consumer<List<Event>>(builder: (context, eventsList, _) {
+      if (eventsList == null) {
+        return Center(child: CircularProgressIndicator());
+      }
+      return ListView.separated(
+          itemCount: eventsList.length,
+          itemBuilder: (context, index) {
+            return ListTile(
+                tileColor: eventsList[index].date.isBefore(DateTime.now())
+                    ? Colors.amber
+                    : Colors.white,
+                leading: CircleAvatar(
+                  backgroundImage: AssetImage('assets/ppi.png'),
+                ),
+                title: Text('${eventsList[index].title}'),
+                subtitle: Text('${eventsList[index].category}'),
+                onTap: () async {
+                  final _event = await Navigator.pushNamed(context, '/edit',
+                      arguments: MemberEventArguments(
+                        _state.member,
+                        eventsList[index],
+                      ));
+                  if (_event != null) {
+                    _state.updateEvent(index: index, event: _event);
+                  }
+                },
+                onLongPress: () {
+                  if (_state.eventList[index].date.isBefore(DateTime.now())) {
+                    _state.removeEvent(index);
+                  }
+                });
+          },
+          separatorBuilder: (context, index) {
+            return Divider(color: Colors.red);
+          });
+    });
   }
 
   // ListView _buildListView() {
@@ -98,20 +135,20 @@ class Body extends StatelessWidget {
   //     _state.removeEvent(index);
   //   }
   // }
-  void _eventTap(BuildContext context, int _index, Event e) async {
-    final _event = await Navigator.pushNamed(context, '/edit',
-        arguments: MemberEventArguments(
-          _state.member,
-          e,
-        ));
-    if (_event != null) {
-      _state.updateEvent(index: _index, event: _event);
-    }
-  }
+//   void _eventTap(BuildContext context, int _index, List e, Events ep) async {
+//     final _event = await Navigator.pushNamed(context, '/edit',
+//         arguments: MemberEventArguments(
+//           _state.member,
+//           e[_index],
+//         ));
+//     if (_event != null) {
+//       ep.updateEvent(index: _index, event: _event);
+//     }
+//   }
 
-  void _eventLongPressed(int index, Event e) {
-    if (e.date.isBefore(DateTime.now())) {
-      _state.removeEvent(index);
-    }
-  }
+//   void _eventLongPressed(int index, Event e) {
+//     if (e.date.isBefore(DateTime.now())) {
+//       _state.removeEvent(index);
+//     }
+//   }
 }
