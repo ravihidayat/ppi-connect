@@ -1,6 +1,8 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:ppi_connect/notifiers/member_notifier.dart';
+import 'package:provider/provider.dart';
 
 import '../../models/member.dart';
 import '../../models/event.dart';
@@ -25,51 +27,20 @@ class MainScreenState extends State<MainScreen> {
 
   Member get member => _member;
   set member(Member value) {
-    _member = value;
-    refreshEventListFuture();
-  }
-
-  List<Event> get eventList => _eventList;
-  set eventList(value) => _eventList = value;
-
-  Future<List<Event>> get eventListFuture => _eventListFuture;
-  set eventListFuture(value) => _eventListFuture = value;
-
-  void refreshEventListFuture(){
-    if(_member != null){
-      _eventListFuture = EventService.getAllEvent();
-      setState(() {});
-    }
-  }
-
-  void addEvent(Event event) async {
-    if (_member != null) {
-      final _event = await EventService.addEvent(event);
-      setState(() => _eventList.add(_event));
-    }
-  }
-
-  void updateEvent({int index, Event event}) async {
-    event.id = _eventList[index].id;
-    _eventList[index] = await EventService.updateEvent(event);
-    refreshEventListFuture();
-  }
-
-  void removeEvent(int index) async {
-    await EventService.removeEvent(_eventList[index]);
-    refreshEventListFuture();
+    setState(() {
+      _member = value;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () => Future.value(false),
-      child: SafeArea(
+    return Consumer<MemberNotifier>(builder: (context, memberNotifier, __) {
+      return SafeArea(
         child: Scaffold(
           appBar: Bar(
             state: this,
           ),
-          body: _member != null
+          body: memberNotifier.member != null
               ? Body(
                   state: this,
                 )
@@ -101,16 +72,18 @@ class MainScreenState extends State<MainScreen> {
                     ),
                   ),
                 ),
-          drawer: _member != null ? AppDrawer(
-            state: this,
-          ) : null,
-          floatingActionButton: _member != null
+          drawer: memberNotifier.member != null
+              ? AppDrawer(
+                  state: this,
+                )
+              : null,
+          floatingActionButton: memberNotifier.member != null
               ? Float(
                   state: this,
                 )
               : null,
         ),
-      ),
-    );
+      );
+    });
   }
 }

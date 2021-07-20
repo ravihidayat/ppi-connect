@@ -1,9 +1,10 @@
 import 'package:ppi_connect/arguments/argument.dart';
-import 'package:ppi_connect/providers/events_provider.dart';
+import 'package:ppi_connect/notifiers/member_notifier.dart';
+
 import 'package:ppi_connect/services/event_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
+import '../../notifiers/events_notifier.dart';
 import '../../models/event.dart';
 import 'main_screen.dart';
 
@@ -34,29 +35,32 @@ class Body extends StatelessWidget {
           if (eventsList == null) {
             return Center(child: CircularProgressIndicator());
           }
-          return ListView.separated(
-              itemCount: eventsList.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                    tileColor: eventsList[index].date.isBefore(DateTime.now())
-                        ? Colors.amber
-                        : Colors.white,
-                    leading: CircleAvatar(
-                      backgroundImage: AssetImage('assets/ppi.png'),
-                    ),
-                    title: Text('${eventsList[index].title}'),
-                    subtitle: Text('${eventsList[index].category}'),
-                    onTap: () =>
-                        _eventTap(context, index, eventsList, eventProv),
-                    onLongPress: () {
-                      if (_state.member.access_grant == 2) {
-                        _eventLongPressed(index, eventProv);
-                      }
-                    });
-              },
-              separatorBuilder: (context, index) {
-                return Divider(color: Colors.red);
-              });
+          return Consumer<MemberNotifier>(
+              builder: (context, memberNotifier, __) {
+            return ListView.separated(
+                itemCount: eventsList.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                      tileColor: eventsList[index].date.isBefore(DateTime.now())
+                          ? Colors.amber
+                          : Colors.white,
+                      leading: CircleAvatar(
+                        backgroundImage: AssetImage('assets/ppi.png'),
+                      ),
+                      title: Text('${eventsList[index].title}'),
+                      subtitle: Text('${eventsList[index].category}'),
+                      onTap: () => _eventTap(context, index, eventsList,
+                          eventProv, memberNotifier),
+                      onLongPress: () {
+                        if (memberNotifier.member.access_grant == 2) {
+                          _eventLongPressed(index, eventProv);
+                        }
+                      });
+                },
+                separatorBuilder: (context, index) {
+                  return Divider(color: Colors.red);
+                });
+          });
         });
   }
 
@@ -99,11 +103,11 @@ class Body extends StatelessWidget {
   //     _state.removeEvent(index);
   //   }
   // }
-  void _eventTap(
-      BuildContext context, int _index, List e, EventNotifier en) async {
+  void _eventTap(BuildContext context, int _index, List e, EventNotifier en,
+      MemberNotifier mn) async {
     final _event = await Navigator.pushNamed(context, '/edit',
         arguments: MemberEventArguments(
-          _state.member,
+          mn.member,
           e[_index],
         ));
     if (_event != null) {

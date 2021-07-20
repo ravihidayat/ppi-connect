@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:ppi_connect/notifiers/member_notifier.dart';
+import 'package:provider/provider.dart';
 
 import '../../services/member_service.dart';
 import '../../models/member.dart';
 import 'login_screen.dart';
 
 class Body extends StatelessWidget {
-  const Body({state}) : _state = state;
+  Body({state}) : _state = state;
+  final emailController = TextEditingController();
+  final pwdController = TextEditingController();
 
   final LoginScreenState _state;
 
@@ -21,23 +25,24 @@ class Body extends StatelessWidget {
           width: 250,
         ),
         _buildTextField(
-            hint: 'Email',
-            icon: Icons.people,
-            onChanged: (value) {
-              _state.email = value;
-            }),
+          hint: 'Email',
+          icon: Icons.people,
+          // onChanged: (value) {
+          //   _state.email = value;
+          // }
+        ),
         _buildTextField(
-            hint: 'Password',
-            isObsecure: !_state.showPassword,
-            icon: Icons.lock,
-            button: IconButton(
-                icon: Icon(Icons.visibility),
-                onPressed: () {
-                  _state.showPassword = !_state.showPassword;
-                }),
-            onChanged: (value) {
-              _state.password = value;
-            }),
+          hint: 'Password',
+          isObsecure: !_state.showPassword,
+          icon: Icons.lock,
+          button: IconButton(
+              icon: Icon(Icons.visibility),
+              onPressed: () {
+                _state.showPassword = !_state.showPassword;
+              }),
+          // onChanged: (value) {
+          //   _state.password = value;}
+        ),
         Visibility(
           visible: _state.showErrorMsg,
           child: Text(
@@ -54,6 +59,7 @@ class Body extends StatelessWidget {
   TextField _buildTextField(
       {hint, icon, isObsecure = false, button, onChanged}) {
     return TextField(
+      controller: hint == 'Email' ? emailController : pwdController,
       decoration: InputDecoration(
         hintText: hint,
         prefixIcon: icon != null ? Icon(icon) : null,
@@ -64,34 +70,35 @@ class Body extends StatelessWidget {
     );
   }
 
-  Row _buildButtons(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        ElevatedButton(
-          onPressed: () => onLoginPressed(context),
-          child: Text('Log in'),
-        ),
-        SizedBox(width: 10.0),
-        ElevatedButton(
-          onPressed: () => onCancelPressed(context),
-          child: Text('Cancel'),
-        ),
-      ],
-    );
+  Widget _buildButtons(BuildContext context) {
+    return Consumer<MemberNotifier>(builder: (context, memberNotifier, __) {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ElevatedButton(
+            onPressed: () => onLoginPressed(context, memberNotifier),
+            child: Text('Log in'),
+          ),
+          SizedBox(width: 10.0),
+          ElevatedButton(
+            onPressed: () => onCancelPressed(context),
+            child: Text('Cancel'),
+          ),
+        ],
+      );
+    });
   }
 
-  void onLoginPressed(BuildContext context) async {
-    final member = await MemberService.getMemberByLoginAndPassword(
-      email: _state.email,
-      password: _state.password,
-    );
+  void onLoginPressed(BuildContext context, MemberNotifier mn) async {
+    print(emailController.text);
+    print(pwdController.text);
+    await mn.authenticateMember(emailController.text, pwdController.text);
 
-    if (member == null) {
+    if (mn.member == null) {
       _state.showErrorMsg = true;
     } else {
       _state.showErrorMsg = false;
-      Navigator.pop(context, member);
+      Navigator.pop(context, mn.member);
     }
   }
 
@@ -99,3 +106,21 @@ class Body extends StatelessWidget {
     Navigator.pop(context, null);
   }
 }
+//   void onLoginPressed(BuildContext context) async {
+//     final member = await MemberService.getMemberByLoginAndPassword(
+//       email: _state.email,
+//       password: _state.password,
+//     );
+
+//     if (member == null) {
+//       _state.showErrorMsg = true;
+//     } else {
+//       _state.showErrorMsg = false;
+//       Navigator.pop(context, member);
+//     }
+//   }
+
+//   void onCancelPressed(BuildContext context) {
+//     Navigator.pop(context, null);
+//   }
+// }

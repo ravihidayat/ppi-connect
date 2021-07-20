@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:ppi_connect/services/event_service.dart';
 import 'package:provider/provider.dart';
 import 'models/event.dart';
+import 'notifiers/member_notifier.dart';
 import 'router.dart';
-import './providers/events_provider.dart';
+import 'notifiers/events_notifier.dart';
 import 'dependencies.dart' as di;
 
 void main() {
@@ -12,6 +13,7 @@ void main() {
     MultiProvider(
       providers: [
         // FutureProvider<List<Event>>(create: (_)=> EventService.getAllEvent()),
+        ChangeNotifierProvider<MemberNotifier>(create: (_) => MemberNotifier()),
         ChangeNotifierProvider<EventNotifier>(
           create: (_) => EventNotifier(),
         )

@@ -1,7 +1,8 @@
 import 'package:ppi_connect/arguments/argument.dart';
 import 'package:ppi_connect/models/event.dart';
 import 'package:flutter/material.dart';
-import 'package:ppi_connect/providers/events_provider.dart';
+import 'package:ppi_connect/notifiers/member_notifier.dart';
+import '../../notifiers/events_notifier.dart';
 import 'package:provider/provider.dart';
 
 import 'main_screen.dart';
@@ -14,37 +15,42 @@ class Float extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<EventNotifier>(builder: (context, eventNotifier, child) {
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          if (_state.member.access_grant == 2)
+      return Consumer<MemberNotifier>(
+          builder: (context, memberNotifier, child) {
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            if (memberNotifier.member.access_grant == 2)
+              FloatingActionButton(
+                tooltip: 'Add a new event',
+                heroTag: null,
+                onPressed: () =>
+                    onAddPressed(context, eventNotifier, memberNotifier),
+                child: Icon(Icons.add),
+              ),
             FloatingActionButton(
-              tooltip: 'Add a new event',
+              tooltip: 'Refresh',
               heroTag: null,
-              onPressed: () => onAddPressed(context, eventNotifier),
-              child: Icon(Icons.add),
-            ),
-          FloatingActionButton(
-            tooltip: 'Refresh',
-            heroTag: null,
-            onPressed: () => onRefreshPressed(),
-            child: Icon(Icons.refresh),
-          )
-        ],
-      );
+              onPressed: () => onRefreshPressed(eventNotifier),
+              child: Icon(Icons.refresh),
+            )
+          ],
+        );
+      });
     });
   }
 
-  void onAddPressed(BuildContext context, EventNotifier en) async {
+  void onAddPressed(
+      BuildContext context, EventNotifier en, MemberNotifier mn) async {
     final _event = await Navigator.pushNamed(context, '/new',
-        arguments: MemberEventArguments(_state.member, Event()));
+        arguments: MemberEventArguments(mn.member, Event()));
     if (_event != null) {
       en.addEvent(event: _event);
     }
   }
 
-  void onRefreshPressed() {
-    _state.refreshEventListFuture();
+  void onRefreshPressed(EventNotifier en) {
+    en.getEvents();
   }
   // void onAddPressed(BuildContext context) async {
   //   final _event = await Navigator.pushNamed(context, '/new',
